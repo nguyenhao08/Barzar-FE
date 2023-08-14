@@ -1,0 +1,20 @@
+{
+  "name": "concentrix-be",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "json-server": "^0.17.3",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "node --experimental-json-modules server.js --port 5000"
+  },
+  "description": "Backend used **JSON Server**: https://github.com/typicode/json-server#getting-started",
+  "main": "server.js",
+  "keywords": [
+    "concentrix-be"
+  ],
+  "author": "Minh Tri",
+  "license": "ISC"
+}
