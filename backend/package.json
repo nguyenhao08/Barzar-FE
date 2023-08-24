@@ -8,7 +8,8 @@
     "path": "^0.12.7"
   },
   "scripts": {
-    "start": "node --experimental-json-modules server.js --port 5000"
+    "start": "node --experimental-json-modules server.js --port 5000",
+    "login-server": "node --watch login_server.js"
   },
   "description": "Backend used **JSON Server**: https://github.com/typicode/json-server#getting-started",
   "main": "server.js",
