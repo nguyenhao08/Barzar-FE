@@ -11,7 +11,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
-      .get("https://fakestoreapi.com/products")
+      .get("http://localhost:8080/products")
       .catch((err) => {});
     dispatch(setProducts(response.data));
   };

@@ -11,7 +11,7 @@ import Footer from "./Footer";
 const ProductDetails = () => {
   const { productId } = useParams();
   let product = useSelector((state) => state.product);
-  const { image, title, price, category, description } = product;
+  const { image, title, price, category, description, detail } = product;
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
     const response = await axios
@@ -46,7 +46,7 @@ const ProductDetails = () => {
                     <a className="ui teal tag label">${price}</a>
                   </h2>
                   <h3 className="ui brown block header">{category}</h3>
-                  <p>{description}</p>
+                  <p>{detail}</p>
                   <div className="ui vertical animated button" tabIndex="0">
                     <div className="hidden content">
                       <i className="shop icon"></i>
