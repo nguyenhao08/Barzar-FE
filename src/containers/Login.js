@@ -51,26 +51,36 @@ function Login({ setIsLoggedIn }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(
-        "http://localhost:8080/users?email=" + email + "&password=" + password
-      );
-      if (res.data.length > 0) {
-        const loggedInUser = res.data[0];
-        if (loggedInUser.email === "hao@gmail.com") {
-          // Lưu thông tin đăng nhập vào localStorage
-          localStorage.setItem("email", loggedInUser.email);
+      const res = await axios.post("http://localhost:4000/api/login", {
+        email,
+        password,
+      });
+
+      if (res.status === 200) {
+        const { role } = res.data;
+
+        if (role === "admin") {
+          // Save login information to localStorage
+          localStorage.setItem("email", email);
           setIsLoggedIn(true); // Update the isLoggedIn state to true
-          // Chuyển hướng đến trang manage/products
+
+          // Redirect to manage/products
           window.location.href = "/manage/products";
-        } else {
-          // Đăng nhập thành công nhưng không phải là admin2@gmail.com
-          console.log("Login successful, but not an admin");
+        } else if (role === "user") {
+          // Save login information to localStorage
+          localStorage.setItem("email", email);
+          setIsLoggedIn(true); // Update the isLoggedIn state to true
+
+          // Redirect to home
           window.location.href = "/";
+        } else {
+          // Invalid role
+          console.log("Invalid role");
         }
       } else {
-        // Đăng nhập thất bại
+        // Login failed
         console.log("Login failed");
-        // Xử lý thông báo hoặc hành động phù hợp
+        // Handle appropriate message or action
       }
       setEmail("");
       setPassword("");

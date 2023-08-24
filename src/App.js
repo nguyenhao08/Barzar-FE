@@ -25,9 +25,7 @@ function App() {
   function requireLogin(Component, props) {
     if (isLoggedIn) {
       const isAdmin =
-        props.location.state &&
-        (props.location.state.email === "hao@gmail.com" ||
-          props.location.state.email === "admin@gmail.com");
+        props.location.state && props.location.state.role === "admin";
 
       if (isAdmin) {
         return <Component {...props} />;
@@ -35,11 +33,7 @@ function App() {
         return <Redirect to="/" />;
       }
     } else {
-      return (
-        <Redirect
-          to={{ pathname: "/login", state: { from: props.location } }}
-        />
-      );
+      return <Redirect to="/login" />;
     }
   }
 
@@ -54,9 +48,14 @@ function App() {
           <Route path="/register" component={Register} />
           <Route
             path="/login"
-            render={(props) => <Login setIsLoggedIn={setIsLoggedIn} />}
+            render={(props) => (
+              <Login {...props} setIsLoggedIn={setIsLoggedIn} />
+            )}
           />
-          <Route path="/manage/products" component={ManageProduct} />
+          <Route
+            path="/manage/products"
+            render={(props) => requireLogin(ManageProduct, props)}
+          />
           <Route path="/manage/product/add" component={Addprd} />
           <Route path="/manage/product/edit/:productId" component={Editprd} />
           <Route component={Notfound} />
