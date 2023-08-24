@@ -35,3 +35,21 @@ export const addProduct = (state = intialState, action) => {
       return state;
   }
 };
+
+export const editProduct = (state = intialState, action) => {
+  switch (action.type) {
+    case ActionTypes.EDIT_PRODUCT:
+      const updatedProducts = state.products.map((product) => {
+        if (product.id === action.payload.id) {
+          return action.payload;
+        }
+        return product;
+      });
+      return {
+        ...state,
+        products: updatedProducts,
+      };
+    default:
+      return state;
+  }
+};

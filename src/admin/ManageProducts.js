@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
 function ManageProduct() {
@@ -8,8 +10,10 @@ function ManageProduct() {
   const [selectAll, setSelectAll] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [deletingItem, setDeletingItem] = useState(null);
+  const [displayedProductss, setDisplayedProducts] = useState([]);
+  const [showGoToTop, setShowGoToTop] = useState(false);
 
-  const productsPerPage = 6;
+  const productsPerPage = 12;
 
   useEffect(() => {
     fetch("http://localhost:8080/products")
@@ -17,38 +21,19 @@ function ManageProduct() {
       .then((data) => setProducts(data))
       .catch((error) => console.log(error));
   }, []);
-
   useEffect(() => {
-    if (selectAll) {
-      const allIndexes = products.map((_, index) => index);
-      setSelectedItems(allIndexes);
-    } else {
-      setSelectedItems([]);
-    }
-  }, [selectAll, products]);
-
-  const handleCheckboxChange = (event, index) => {
-    const isChecked = event.target.checked;
-
-    if (isChecked) {
-      setSelectedItems((prevSelectedItems) => {
-        // Kiểm tra xem sản phẩm đã được chọn hay chưa
-        if (!prevSelectedItems.includes(index)) {
-          return [...prevSelectedItems, index];
-        }
-        return prevSelectedItems;
-      });
-    } else {
-      setSelectedItems((prevSelectedItems) =>
-        prevSelectedItems.filter((item) => item !== index)
-      );
-    }
+    const handleScroll = (e) => {
+      setShowGoToTop(window.scrollY >= 350);
+    };
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+  const handleButtonClick = () => {
+    window.scrollTo(0, 0);
   };
 
-  const handleSelectAllChange = (event) => {
-    const isChecked = event.target.checked;
-    setSelectAll(isChecked);
-  };
+  const handleCheckboxChange = (event, index) => {};
+
+  const handleSelectAllChange = (event) => {};
   const displayedProducts = useMemo(() => {
     // Tính toán danh sách sản phẩm hiển thị trên trang
     const startIndex = (currentPage - 1) * productsPerPage;
@@ -68,26 +53,34 @@ function ManageProduct() {
     );
 
     if (confirmation) {
-      // Lấy id của sản phẩm được chọn
-      const selectedProductId = products[index].id;
+      const selectedProduct = displayedProducts[index];
+      const selectedProductId = selectedProduct.id;
 
       axios
         .delete(`http://localhost:8080/products/${selectedProductId}`)
         .then(() => {
           const updatedProducts = [...products];
-          updatedProducts.splice(index, 1);
+          const updatedDisplayedProducts = [...displayedProducts];
+
+          updatedProducts.splice(
+            products.findIndex((product) => product.id === selectedProductId),
+            1
+          );
+          updatedDisplayedProducts.splice(index, 1);
+
           setProducts(updatedProducts);
+          setDisplayedProducts(updatedDisplayedProducts);
           setSelectedItems((prevSelectedItems) =>
             prevSelectedItems.filter((item) => item !== index)
           );
           setDeletingItem(null);
+          toast.success("Product delete successfully");
         })
         .catch((error) => console.log(error));
     } else {
       setDeletingItem(null);
     }
   };
-
   const handleDeleteSelect = () => {
     if (selectedItems.length === 0) {
       alert("Please select at least one product to delete.");
@@ -205,6 +198,7 @@ function ManageProduct() {
         </div>
 
         <table className="table">
+          <ToastContainer />
           <thead>
             <tr>
               <th>
@@ -247,7 +241,7 @@ function ManageProduct() {
                 <td>{product.quantity}</td>
                 <td>
                   <a
-                    href={`edit/${product.id}`}
+                    href={`/manage/product/edit/${product.id}`}
                     className="btn btn-sm btn-info"
                   >
                     Edit
@@ -273,6 +267,22 @@ function ManageProduct() {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className="scrolls">
+        {showGoToTop && (
+          <a
+            href="#"
+            class="scrolls"
+            style={{ display: "inline" }}
+            onChange={handleButtonClick}
+          >
+            <img
+              src="//theme.hstatic.net/1000026602/1001065742/14/arrow_final.png?v=727"
+              style={{ overflow: "hidden" }}
+            />
+            <i class="fa fa-angle-up hidden"></i>
+          </a>
+        )}
       </div>
       <div class="page-container">
         {Array.from({ length: totalPages }).map((_, index) => (

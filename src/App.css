@@ -1,55 +1,348 @@
-.App {
-  text-align: center;
+* {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ui.cards > .card > .image {
+  height: 250px;
+  padding: 20px;
+  background: #fff;
+  margin: auto;
+}
+.ui.cards > .card > .image > img {
+  height: 100%;
+  max-width: 100%;
+  width: auto;
+}
+.ui.cards > .card > .content > .header {
+  height: 48px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.ui.cards > .card > .content > .description {
+  height: 36px;
+  margin-bottom: 0px;
+  overflow: hidden;
+}
+.ui.cards > .card .meta.price {
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.ui.cards > .card .meta.price > a {
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.ui.menu.fixed {
+  height: 60px;
+  padding-top: 15px;
+}
+
+.ui.grid.container {
+  margin-top: 10px;
+}
+
+.ui.grid > .row {
+  background: #fff;
+}
+.ui.grid > .row > .column.lp {
+  padding: 20px 40px 20px 20px;
+  align-self: flex-start !important;
+}
+.ui.grid > .row > .column.rp {
+  padding: 20px 20px 20px 40px;
+  text-align: left;
+  align-self: flex-start !important;
+}
+
+.ui.grid > .row > .column > img,
+.ui.grid > .row > img {
+  height: 100%;
+}
+.ui.placeholder .header:not(:first-child):before,
+.ui.placeholder .image:not(:first-child):before,
+.ui.placeholder .paragraph:not(:first-child):before {
+  display: none;
+}
+
+.ui.label,
+.ui.labels .label {
+  font-size: 22px;
+}
+
+.column.rp h1 {
+  color: #333;
+}
+.column.rp p {
+  font-size: 18px;
+  color: #777;
+}
+.ui.placeholder.segment .column .button,
+.ui.placeholder.segment .column .field,
+.ui.placeholder.segment .column textarea,
+.ui.placeholder.segment .column > .ui.input {
+  background-color: #ff3e6c;
+  border: 1px solid #ff3e6c;
+  color: #fff;
+  font-size: 18px;
+  margin-left: 0;
+}
+
+.content{
+  a{
+    text-decoration: none
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*------------------------------*/
+.blurb{
+  text-align: center;
+  margin-top: 145px;
+  color: rgb(192, 12, 12);
+  font-weight: 500 !important;
+  line-height: 1em !important;
+}
+.h1{
+  text-align: center;
+  margin-top: 20px;
+  font-size: larger;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  line-height: 1em !important;
+  font-size: 3em !important;
+  
+}
+.p {
+  text-align: center;
+  margin-top: 201px;
+}
+
+.text-success {
+  color: #198754!important; 
+}
+
+@media (min-width: 768px) {
+  /* Khi màn hình có chiều rộng từ 768px trở lên */
+  .banner {
+    width: 50%; /* thu nhỏ banner xuống 50% chiều rộng của màn hình */
+  }
+}
+.banner{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-container h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fffffff5;
+  font-size: 64px;
+  /* Các kiểu khác cho tiêu đề trên hình ảnh */
+}
+
+@media (max-width: 768px) {
+  /* Khi màn hình có chiều rộng từ 768px trở lên */
+  .image-container h1 {
+    text-align: center;
+    font-size: auto; /* thu nhỏ banner xuống 50% chiều rộng của màn hình */
+  }
+}
+
+.dropdown {
+  display: block;
+}
+
+.row{
+  margin-top: 20px;
+  margin-left: 45px;
+  
+}
+@media (max-width: 768px) {
+  /* Khi màn hình có chiều rộng từ 768px trở lên */
+  .row {
+    margin-left: center;
+    font-size: auto; /* thu nhỏ banner xuống 50% chiều rộng của màn hình */
+  }
+  .form-control{
+    width: 50%
+  }
+}
+.form-control{
+    margin-left: center;
+    width: 520px;
+}
+
+
+.button{
+  margin-top: 40px;
+  padding: 10;
+}
+
+.form-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.form-row {
+  display: flex;
+  gap: 40px;
+  height: 40px;
+  width: 70px;
+}
+
+
+.form-row-2 {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  height: 200px;
+  width: auto;
+}
+
+.form-label {
+  width: 70px;
+  font-weight: 54 0;
+}
+
+.form-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-select {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-textarea {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-image {
+  max-width: 200px;
+}
+
+.form-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
   color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+.form-container {
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.form-label,
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  margin-left: 20px;
 }
+.btn-sm {
+    --bs-btn-padding-y: 0.46rem;
+    --bs-btn-padding-x: 0.7rem;
+    --bs-btn-font-size: 0.9rem;
+    --bs-btn-border-radius: var(--bs-border-radius);
+}
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+.page-container1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  margin-top: 35px;
+}
+
+.page-button {
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.page-button:hover {
+  background-color: #e0e0e0;
+}
+
+.page-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.form_container{
+  
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+@media screen and (max-width: 700px) {
+
+  .form_container{
+    width: 65%;
+  }
 
   
-
-.success-msg {
-  width: 100%;
-  padding: 14px;
-  background-color: #dff0d8;
-  color: #468847;
 }
-.error-msg {
-  width: 100%;
-  padding: 14px;
-  background-color: #ff9797;
-  color: #382727;
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}
+.error-input {
+  border: 1px solid red;
 }
 
+.scrolls{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0.5;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  }
 
+  .active {
+    text-decoration: underline !important;
+  }

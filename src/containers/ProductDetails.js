@@ -10,8 +10,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 const ProductDetails = () => {
   const { productId } = useParams();
-  let product = useSelector((state) => state.product);
-  const { image, title, price, category, description, detail } = product;
+  const product = useSelector((state) => state.product);
+  const { image, title, price, category, currency, detail } = product;
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
     const response = await axios
@@ -33,7 +33,7 @@ const ProductDetails = () => {
         {Object.keys(product).length === 0 ? (
           <div>...Loading</div>
         ) : (
-          <div className="ui placeholder segment">
+          <div className="ui segment">
             <div className="ui two column stackable center aligned grid">
               <div className="ui vertical divider">AND</div>
               <div className="middle aligned row">
@@ -43,10 +43,19 @@ const ProductDetails = () => {
                 <div className="column rp">
                   <h1>{title}</h1>
                   <h2>
-                    <a className="ui teal tag label">${price}</a>
+                    <a className="ui teal tag label">
+                      {price} {currency}
+                    </a>
                   </h2>
                   <h3 className="ui brown block header">{category}</h3>
-                  <p>{detail}</p>
+                  <p>
+                    {detail.split("\n").map((line, index) => (
+                      <>
+                        {line}
+                        <br />
+                      </>
+                    ))}
+                  </p>
                   <div className="ui vertical animated button" tabIndex="0">
                     <div className="hidden content">
                       <i className="shop icon"></i>

@@ -35,3 +35,19 @@ export const addProduct = (product) => {
       });
   };
 };
+
+export const editProduct = (product) => {
+  return (dispatch) => {
+    axios
+      .put(`http://localhost:8080/products/${product.id}`, product)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.EDIT_PRODUCT,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};

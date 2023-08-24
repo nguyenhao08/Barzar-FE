@@ -25,7 +25,8 @@ function Addprd() {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  {
+    /*  const handleSubmit = (e) => {
     e.preventDefault();
     if (
       handleSubmit &&
@@ -66,6 +67,97 @@ function Addprd() {
     setTimeout(() => {
       window.location.reload(); // Tải lại trang sau khi thêm thành công
     }, 2000);
+  };*/
+  }
+
+  // Err validation
+  const [titleError, setTitleError] = useState("");
+  const [priceError, setPriceError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+  const [imageError, setImageError] = useState("");
+  const [quantityError, setQuantityError] = useState("");
+  const [detailError, setDetailError] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      handleSubmit &&
+      (title === "" ||
+        price === "" ||
+        description === "" ||
+        image === "" ||
+        quantity === "" ||
+        detail === "")
+    ) {
+      //validation
+      setTitleError("");
+      setPriceError("");
+      setDescriptionError("");
+      setImageError("");
+      setQuantityError("");
+      setDetailError("");
+
+      let isValid = true;
+
+      if (title === "") {
+        setTitleError("Please enter the product name.");
+        isValid = false;
+      }
+
+      if (price === "") {
+        setPriceError("Please enter the product price.");
+        isValid = false;
+      }
+
+      if (description === "") {
+        setDescriptionError("Please enter the product description.");
+        isValid = false;
+      }
+
+      if (image === "") {
+        setImageError("Please enter the product image URL.");
+        isValid = false;
+      }
+
+      if (quantity === "") {
+        setQuantityError("Please enter the product quantity.");
+        isValid = false;
+      }
+
+      if (detail === "") {
+        setDetailError("Please enter the product details.");
+        isValid = false;
+      }
+
+      if (!isValid) {
+        return;
+      }
+      return;
+    }
+
+    const product = {
+      title,
+      price,
+      description,
+      category,
+      image,
+      quantity,
+      detail,
+      currency,
+    };
+
+    dispatch(addProduct(product));
+
+    setTitle("");
+    setPrice("");
+    setCategory("");
+    setDescription("");
+    setDetail("");
+    setImage("");
+    setQuantity("");
+    setCurrency("");
+    alert("Product added successfully");
+
+    window.location.reload(); // Reload page
   };
 
   return (
@@ -114,30 +206,61 @@ function Addprd() {
       </nav>
 
       <form class="form-container" onSubmit={handleSubmit}>
-        <ToastContainer />
-
         <div class="form-row">
-          <label class="form-label">Name:</label>
-          <input
-            type="text"
-            class="form-input"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <label className="form-label">Name:</label>
+          <div className="form-row1">
+            <input
+              type="text"
+              className={`form-input ${titleError ? "error-input" : ""}`}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            {titleError && (
+              <span
+                style={{ color: "red", paddingBottom: 10 }}
+                className="error"
+              >
+                {titleError}
+              </span>
+            )}
+          </div>
+
           <label class="form-label">Price:</label>
-          <input
-            type="number"
-            class="form-input"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
+          <div className="form-row1">
+            <input
+              type="number"
+              className={`form-input ${priceError ? "error-input" : ""}`}
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            {priceError && (
+              <span
+                style={{ color: "red", paddingBottom: 10 }}
+                className="error"
+              >
+                {priceError}
+              </span>
+            )}
+          </div>
+
           <label class="form-label">Quantity:</label>
-          <input
-            type="number"
-            class="form-input"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
+          <div className="form-row1">
+            <input
+              type="number"
+              className={`form-input ${quantityError ? "error-input" : ""}`}
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+            {quantityError && (
+              <span
+                style={{ color: "red", paddingBottom: 10 }}
+                className="error"
+              >
+                {quantityError}
+              </span>
+            )}
+          </div>
+
           <label class="form-label">Currency:</label>
           <select
             class="form-row"
@@ -150,12 +273,22 @@ function Addprd() {
         </div>
         <div class="form-row">
           <label class="form-label">Short Description:</label>
-          <input
-            type="text"
-            class="form-input"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <div className="form-row1">
+            <input
+              type="text"
+              className={`form-input ${descriptionError ? "error-input" : ""}`}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            {descriptionError && (
+              <span
+                style={{ color: "red", paddingBottom: 10 }}
+                className="error"
+              >
+                {descriptionError}
+              </span>
+            )}
+          </div>
           <label class="form-label">Category:</label>
           <select
             class="form-row"
@@ -169,27 +302,49 @@ function Addprd() {
         </div>
         <div class="form-row-2">
           <label class="form-label">Details:</label>
+
           <textarea
             type="text"
-            class="form-input"
+            className={`form-input ${detailError ? "error-input" : ""}`}
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
           />
+          {detailError && (
+            <span style={{ color: "red", paddingBottom: 10 }} className="error">
+              <br></br>
+              {detailError}
+            </span>
+          )}
+
           <div>
             <label class="form-label">Image URL:</label>
             {previewImage && (
               <img src={previewImage} alt="Preview" class="form-image" />
             )}
+
+            <input
+              className={`form-input ${imageError ? "error-input" : ""}`}
+              type="text"
+              onChange={handleImageChange}
+            />
+            {imageError && (
+              <span
+                style={{ color: "red", paddingBottom: 10 }}
+                className="error"
+              >
+                <br />
+                {imageError}
+              </span>
+            )}
           </div>
-          <input type="text" onChange={handleImageChange} />
         </div>
 
         <hr />
         <div class="form-group" style={{ marginLeft: "30px" }}>
           <div class="col-sm-offset-3 col-sm-9">
-            <button type="submit" class="btn btn-primary">
+            <a type="submit" class="btn btn-primary" href="/manage/products">
               Cancel
-            </button>
+            </a>
             <button
               type="submit"
               class="btn btn-primary"

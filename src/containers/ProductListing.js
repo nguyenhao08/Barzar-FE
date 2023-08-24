@@ -1,14 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/actions/productsActions";
 import ProductComponent from "./ProductComponent";
+import unidecode from "unidecode";
 import Footer from "./Footer";
 import Header from "./Header";
 
 const ProductPage = () => {
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("All");
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    console.log(event.target.value);
+  };
+  useEffect(() => {
+    let results = products;
+    if (currentCategory !== "All") {
+      results = results.filter(
+        (product) => product.category === currentCategory
+      );
+    }
+    if (searchTerm) {
+      results = results.filter((product) =>
+        unidecode(product.title.toLowerCase()).includes(
+          unidecode(searchTerm.toLowerCase())
+        )
+      );
+    }
+    setSearchResults(results);
+  }, [searchTerm, products, currentCategory]);
   const fetchProducts = async () => {
     const response = await axios
       .get("http://localhost:8080/products")
@@ -20,56 +44,85 @@ const ProductPage = () => {
     fetchProducts();
   }, []);
 
+  console.log(searchResults);
+
+  //////////////////
+
+  const handleCategoryClick = (category) => {
+    setCurrentCategory(category);
+  };
+
   return (
     <>
       <Header />
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="list-inline shop-top-menu pb-3 pt-1">
-              <li class="list-inline-item">
-                <a class="h3 text-dark text-decoration-none mr-3" href="#">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <ul className="list-inline shop-top-menu pb-3 pt-1">
+              <li className="list-inline-item">
+                <a
+                  className={`h3 text-dark text-decoration-none mr-3 ${
+                    currentCategory === "All" ? "active" : ""
+                  }`}
+                  onClick={() => handleCategoryClick("All")}
+                >
                   All
                 </a>
               </li>
-              <li class="list-inline-item">
-                <a class="h3 text-dark text-decoration-none mr-3" href="#">
+              <li className="list-inline-item">
+                <a
+                  className={`h3 text-dark text-decoration-none mr-3 ${
+                    currentCategory === "Men's" ? "active" : ""
+                  }`}
+                  onClick={() => handleCategoryClick("Men's")}
+                >
                   Men's
                 </a>
               </li>
-              <li class="list-inline-item">
-                <a class="h3 text-dark text-decoration-none" href="#">
+              <li className="list-inline-item">
+                <a
+                  className={`h3 text-dark text-decoration-none ${
+                    currentCategory === "women" ? "active" : ""
+                  }`}
+                  onClick={() => handleCategoryClick("women")}
+                >
                   Women's
                 </a>
               </li>
-              <li class="list-inline-item">
-                <a class="h3 text-dark text-decoration-none" href="#">
+              <li className="list-inline-item">
+                <a
+                  className={`h3 text-dark text-decoration-none ${
+                    currentCategory === "other" ? "active" : ""
+                  }`}
+                  onClick={() => handleCategoryClick("other")}
+                >
                   Other Products
                 </a>
               </li>
             </ul>
           </div>
-          <div class="col-md-6 pb-4">
-            <div class="d-flex">
-              <div class="input-group">
+          <div className="col-md-6 pb-4">
+            <div className="d-flex">
+              <div className="input-group">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="inputMobileSearch"
                   placeholder="Search ..."
+                  value={searchTerm}
+                  onChange={handleSearch}
                 />
-                <div class="input-group-text">
-                  <i class="fa fa-fw fa-search"></i>
+                <div className="input-group-text">
+                  <i className="fa fa-fw fa-search"></i>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="ui grid container">
-          <ProductComponent />
-        </div>
+        <ProductComponent products={searchResults} />
       </div>
+
       <Footer />
     </>
   );
