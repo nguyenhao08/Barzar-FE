@@ -1,0 +1,706 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "token": "abcxyz123"
+    },
+    {
+      "email": "admin1@gmail.com",
+      "password": "admin112345",
+      "token": "def123ghi",
+      "id": 3
+    },
+    {
+      "email": "hao@gmail.com",
+      "password": "hao1234567",
+      "token": "xyz789abc",
+      "id": 4
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin123445",
+      "id": 5
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 6
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 7
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 8
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 9
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 10
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 11
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 12
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 13
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 14
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 15
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 16
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 17
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 18
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 19
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 20
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 21
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 22
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 23
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 24
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 25
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 26
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 27
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 28
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 29
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin123451",
+      "id": 30
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin1234511111",
+      "id": 31
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 32
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 33
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 34
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 35
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 36
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 37
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 38
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 39
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 40
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 41
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 42
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 43
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345111111111111111",
+      "id": 44
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 45
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 46
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 47
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 48
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 49
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 50
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 51
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 52
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 53
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 54
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 55
+    },
+    {
+      "email": "aaa@gmail.com",
+      "password": "aa",
+      "id": 56
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "admin12345",
+      "id": 57
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "ad",
+      "id": 58
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "ad",
+      "id": 59
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "ad",
+      "id": 60
+    },
+    {
+      "id": 61
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 62
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "admin12345",
+      "id": 63
+    },
+    {
+      "email": "a",
+      "password": "a",
+      "id": 64
+    }
+  ],
+  "products": [
+    {
+      "id": 3,
+      "title": "Mắt kính",
+      "price": "450000",
+      "description": " Phong Cách: Basic",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/img_0044_f2f9f82fb43b445686c959a8c382f9a8_master.jpg",
+      "rating": {
+        "rate": 4.7,
+        "count": 500
+      },
+      "quantity": "6",
+      "detail": "Chiều Ngang Kính: 14 cm,Chiều Cao Tròng Kính: 4.7 cm,Cầu Kính: 1.5 cm,Chiều Rộng Tròng Kính: 5.2 cm,Chiều Dài Gọng: 14.5 cm",
+      "currency": "VND"
+    },
+    {
+      "id": 4,
+      "title": "Túi Đeo Casual Crossbody Black",
+      "price": "28",
+      "description": "Phong Cách: Basic",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/img_1182_af26dbec5d23499b8ba4ef906fc1d414_master.jpg",
+      "rating": {
+        "rate": 2.1,
+        "count": 430
+      },
+      "currency": "USD",
+      "quantity": "6",
+      "detail": "- Chất Liệu : Da PU\n- Kiểu Dáng: Túi Vuông"
+    },
+    {
+      "id": 6,
+      "title": "Quần Jean Straight Distress Dark Blue",
+      "price": "430000",
+      "description": "Phong Cách: Basic",
+      "category": "women",
+      "image": "https://product.hstatic.net/1000026602/product/web_d_605fd8940a054b7980910c9be47884af_master.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 70
+      },
+      "detail": "- Chất Liệu: Cotton Pha Spandex\n- Độ Co Giãn: Ít\n- Độ Dày: Vừa\n- Loại Quần : Rách\n- Fom Quần: Ống Xuông",
+      "quantity": "12"
+    },
+    {
+      "id": 10,
+      "title": "Short Waves Block Inno",
+      "price": "280000",
+      "description": "S M L XL",
+      "category": "electronics",
+      "image": "https://product.hstatic.net/1000026602/product/dsc02665_eb1945e0df074e1495d67b8a4205d9a8_master.jpg",
+      "rating": {
+        "rate": 2.9,
+        "count": 470
+      },
+      "quantity": "5",
+      "detail": "- Chất Liệu: Polyeste Dệt Jacquard\n- Độ Co Giãn: Trung Bình\n- Form Set: Regular\n- Loại Set: Trơn\n- Phong Cách: Basic, Street Style"
+    },
+    {
+      "id": 12,
+      "title": "T-shirt Waves Block Inno",
+      "price": "270",
+      "description": "S M L XL",
+      "category": "electronics",
+      "image": "https://product.hstatic.net/1000026602/product/dsc02660_33bda4b1fe88480fa087f4b023c81311_master.jpg",
+      "rating": {
+        "rate": 4.8,
+        "count": 400
+      },
+      "quantity": "10",
+      "detail": "- Chất Liệu: Polyeste Dệt Jacquard\n- Độ Co Giãn: Trung Bình\n- Form Set: Regular\n- Loại Set: Trơn\n- Phong Cách: Basic, Street Style"
+    },
+    {
+      "id": 15,
+      "title": "Nón Casual Iconic Steel",
+      "price": "120000",
+      "description": "M/L/XL/XXL",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/dsc02823_c7d561f325b04fca9e93d85730f62257_master.jpg",
+      "rating": {
+        "rate": 2.6,
+        "count": 235
+      },
+      "detail": "- Chất Liệu: Kaki\n- Kiểu Nón: Nón Lưỡi Trai\n- Loại Nón: Trơn\n- Chi Tiết: Logo Sắt\n- Phong Cách: Basic, Casual, Street Style",
+      "quantity": "10"
+    },
+    {
+      "id": 16,
+      "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+      "price": 29.95,
+      "description": "M/L/XL/XXL",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
+      "rating": {
+        "rate": 2.9,
+        "count": 340
+      }
+    },
+    {
+      "id": 17,
+      "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+      "price": 39.99,
+      "description": "M/L/XL/XXL",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+      "rating": {
+        "rate": 3.8,
+        "count": 679
+      }
+    },
+    {
+      "id": 18,
+      "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
+      "price": 9.85,
+      "description": "M/L/XL/XXL",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
+      "rating": {
+        "rate": 4.7,
+        "count": 130
+      }
+    },
+    {
+      "id": 20,
+      "title": "DANVOUY Womens T Shirt Casual Cotton Short",
+      "price": 12.99,
+      "description": "M/L/XL/XXL",
+      "category": "women's clothing",
+      "quantity": "2",
+      "detail": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    },
+    {
+      "title": "Sơ Mi",
+      "price": "20",
+      "description": "- Chất Liệu: Sơ Mi Cotton - Form Áo: Relaxed - Độ Co Giãn: Không - Tay Áo: Dài - Cổ Áo: Cổ Đức - Phong Cách: Basic - Chi Tiết: Phối Túi",
+      "category": "",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "2",
+      "detail": "",
+      "currency": "USD",
+      "id": 29
+    },
+    {
+      "title": "Áo Sơ Mi Vertical Blue White Pock",
+      "price": "280000",
+      "description": "Basic",
+      "category": "",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "10",
+      "detail": "v",
+      "currency": "",
+      "id": 34
+    },
+    {
+      "title": "chì kẻ mắt",
+      "price": "",
+      "description": "132",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "",
+      "detail": "",
+      "currency": "",
+      "id": 36
+    },
+    {
+      "title": "Áo Sơ Mi Vertical Blue White Pock",
+      "price": "280000",
+      "description": "SX/S/M/XL",
+      "category": "",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "10",
+      "detail": "- Chất Liệu: Sơ Mi Cotton\n- Form Áo: Relaxed\n- Độ Co Giãn: Không\n- Tay Áo: Dài\n- Cổ Áo: Cổ Đức\n- Phong Cách: Basic\n- Chi Tiết: Phối Túi",
+      "currency": "",
+      "id": 39
+    },
+    {
+      "title": "Áo Sơ Mi Vertical Blue White Pock",
+      "price": "280",
+      "description": "SX/S/M/L/XL",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "1",
+      "detail": "- Chất Liệu: Sơ Mi Cotton\n- Form Áo: Relaxed\n- Độ Co Giãn: Không\n- Tay Áo: Dài\n- Cổ Áo: Cổ Đức\n- Phong Cách: Basic\n- Chi Tiết: Phối Túi",
+      "currency": "USD",
+      "id": 41
+    },
+    {
+      "title": "Áo Sơ Mi Vertical Blue White Pock",
+      "price": "10",
+      "description": "Vòng Đầu: 62 cm",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/img_8926_11f60dfaa28a415ca44d25b603f328eb_master.jpg",
+      "quantity": "10",
+      "detail": "- Chất Liệu: Kaki\n- Kiểu Nón: Nón Lưỡi Trai\n- Loại Nón: Trơn\n- Chi Tiết: Logo Thêu\n- Phong Cách: Casual",
+      "currency": "USD",
+      "id": 54
+    },
+    {
+      "title": "Nón Eighteen Beige",
+      "price": "120000",
+      "description": "Vòng Đầu: 62 cm",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/img_8926_11f60dfaa28a415ca44d25b603f328eb_master.jpg",
+      "quantity": "8",
+      "detail": "- Chất Liệu: Kaki\n- Kiểu Nón: Nón Lưỡi Trai\n- Loại Nón: Trơn\n- Chi Tiết: Logo Sắt\n- Phong Cách: Basic, Casual, Street Style",
+      "currency": "VND",
+      "id": 55
+    },
+    {
+      "title": "321",
+      "price": "321",
+      "description": "321",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "321",
+      "detail": "321",
+      "currency": "VND",
+      "id": 68
+    },
+    {
+      "title": "ewq",
+      "price": "1",
+      "description": "ewq",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "1",
+      "detail": "ewq",
+      "currency": "VND",
+      "id": 69
+    },
+    {
+      "title": "Áo Sơ Mi Vertical Blue White Pock",
+      "price": "21",
+      "description": "dă",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+      "quantity": "2",
+      "detail": "dă",
+      "currency": "VND",
+      "id": 70
+    },
+    {
+      "title": "Áo Thun Cozy Easy Pick",
+      "price": "12",
+      "description": "M/L/XL/XXL",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/img_2220_84b007fe75154d9e897002cdd442eebc_master.jpg",
+      "quantity": "2",
+      "detail": "- Chất Liệu: Cotton Len\n- Form Áo: Slim Fit\n- Độ Co Giãn: Trung Bình\n- Tay Áo: Tay Ngắn\n- Cổ Áo: Cổ Tròn\n- Loại Áo: Áo Trơn\n- Phong Cách: Basic\n- Định Lượng: 250GSM",
+      "currency": "VND",
+      "id": 73
+    },
+    {
+      "title": "Áo Sơ Mi Bishop Sleeves Linen",
+      "price": "310000",
+      "description": "Freesize",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/web_ao_baee73fab78d4092be6b6b24ae563c91_master.jpg",
+      "quantity": "10",
+      "detail": "- Chất Liệu: Linen\n- Độ Co Giãn: Ít\n- Độ Dày: Mỏng\n- Loại Áo: Trơn\n- Phong Cách: Casual",
+      "currency": "VND",
+      "id": 74
+    },
+    {
+      "title": "Áo Sơ Mi Vertical Blue White Pock",
+      "price": "222",
+      "description": "Xs",
+      "category": "women",
+      "image": "https://product.hstatic.net/1000026602/product/web_ao_baee73fab78d4092be6b6b24ae563c91_master.jpg",
+      "quantity": "22",
+      "detail": "- Chất Liệu: Linen\n- Độ Co Giãn: Ít\n- Độ Dày: Mỏng\n- Loại Áo: Trơn\n- Phong Cách: Casual",
+      "currency": "VND",
+      "id": 75
+    },
+    {
+      "title": "a",
+      "price": "2",
+      "description": "a",
+      "category": "other",
+      "image": "https://product.hstatic.net/1000026602/product/img_0044_f2f9f82fb43b445686c959a8c382f9a8_master.jpg",
+      "quantity": "2",
+      "detail": "a",
+      "currency": "VND",
+      "id": 76
+    },
+    {
+      "title": "Áo Sơ Mi Denim Essentials",
+      "price": "420000",
+      "description": "S   M   L   XL",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/dsc00238_36f61b0849314ad88a97b94e7fca3b3c_master.jpg",
+      "quantity": "5",
+      "detail": "- Chất Liệu: Denim Cotton\n- Form Áo: Slim Fit\n- Độ Co Giãn: Ít\n- Tay Áo: Dài\n- Cổ Áo: Cổ Đức\n- Loại Áo: Trơn\n- Phong Cách: Basic, Casual",
+      "currency": "VND",
+      "id": 77
+    },
+    {
+      "title": "Áo Thun Raglan A Summer Of Art",
+      "price": "280000",
+      "description": " Phong Cách: Basic",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/img_2429_f894c3ffca88490bb022a01e8e523424_master.jpg",
+      "quantity": "10",
+      "detail": "- Chất Liệu: Cá Xấu TC 2 Chiều\n- Form Áo: Oversize\n- Độ Co Giãn: Trung Bình\n- Tay Áo: Tay Ngắn\n- Cổ Áo: Cổ Tròn\n- Loại Áo: In Hình\n\n- Định Lượng: 250GSM",
+      "currency": "VND",
+      "id": 78
+    },
+    {
+      "title": "Quần Jean Skinny Rip Details Dark Blue",
+      "price": "390000",
+      "description": "Phong Cách: Basic, Casual, Street Style",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/dsc09123_d4990784c60d42eb9c15288cadf6235b_master.jpg",
+      "quantity": "10",
+      "detail": "- Chất Liệu: Cotton Pha Spandex\n- Độ Dày: Vừa\n- Độ Co Giãn: Ít\n- Form Quần: Skinny\n- Loại Quần: Wash Trơn",
+      "currency": "VND",
+      "id": 79
+    },
+    {
+      "title": "Áo Polo SH Stretch Black",
+      "price": "350000",
+      "description": "Phong Cách: Basic",
+      "category": "Men's",
+      "image": "https://product.hstatic.net/1000026602/product/dsc06635_756ce23986e4443390f5c51dd5fa8059_master.jpg",
+      "quantity": "8",
+      "detail": "- Định Lượng: 250GSM\n- Form Áo: Slim Fit\n- Độ Co Giãn: Trung Bình\n- Tay Áo: Tay Ngắn",
+      "currency": "VND",
+      "id": 80
+    },
+    {
+      "title": "Áo Sơ Mi Top Slimfit Body",
+      "price": "350000",
+      "description": "Phong Cách: Casual",
+      "category": "women",
+      "image": "https://product.hstatic.net/1000026602/product/dsc09241_38e29820e48a43c191892a6bbbb6983e_master.jpg",
+      "quantity": "5",
+      "detail": "- Chất Liệu: Thun Gân\n- Độ Co Giãn: Vừa\n- Độ Dày: Mỏng\n- Loại Áo: Trơn",
+      "currency": "VND",
+      "id": 81
+    },
+    {
+      "title": "Áo Sơ Mi Embroidery Logo SH",
+      "price": "300000",
+      "description": "Phong Cách: Casual, Streetstyle",
+      "category": "women",
+      "image": "https://product.hstatic.net/1000026602/product/img_8152_1e047a5790bc4353a17ca4d099f8d011_master.jpg",
+      "quantity": "3",
+      "detail": "- Chất Liệu: Kate Mỹ\n- Độ Co Giãn: Không\n- Độ Dày: Vừa\n- Loại Áo: Thêu",
+      "currency": "VND",
+      "id": 82
+    },
+    {
+      "title": "Áo Sơ Mi Crop Short Sleeves",
+      "price": "290000",
+      "description": "Phong Cách: Basic, Casual",
+      "category": "women",
+      "image": "https://product.hstatic.net/1000026602/product/web_trang_05f37ebd46774c2e8592a7d4cd1d162d_master.jpg",
+      "quantity": "6",
+      "detail": "- Chất Liệu: Cotton Lạnh\n- Độ Co Giãn: Không\n- Độ Dày: Mỏng\n- Loại Áo: Trơn",
+      "currency": "VND",
+      "id": 83
+    }
+  ]
+}
