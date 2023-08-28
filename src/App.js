@@ -35,19 +35,7 @@ function App() {
       return <Redirect to="/login" />;
     }
   }
-  function requireLogin(Component, props) {
-    if (isLoggedIn) {
-      const isAdmin = userRole === "admin";
 
-      if (isAdmin) {
-        return <Component {...props} />;
-      } else {
-        return <Redirect to="/" />;
-      }
-    } else {
-      return <Redirect to="/login" />;
-    }
-  }
   console.log("Rule: ", { userRole });
   return (
     <div className="App">
