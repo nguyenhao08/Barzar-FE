@@ -2,10 +2,13 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   selectedProduct,
   removeSelectedProduct,
+  addToCart,
 } from "../redux/actions/productsActions";
+
 import Header from "./Header";
 import Footer from "./Footer";
 const ProductDetails = () => {
@@ -26,6 +29,16 @@ const ProductDetails = () => {
       dispatch(removeSelectedProduct());
     };
   }, [productId]);
+  const handleAddToCart = () => {
+    const productData = {
+      id: productId,
+      image,
+      title,
+      price,
+      quantity: 1,
+    };
+    dispatch(addToCart(productData));
+  };
   return (
     <>
       <Header />
@@ -56,7 +69,11 @@ const ProductDetails = () => {
                       </>
                     ))}
                   </p>
-                  <div className="ui vertical animated button" tabIndex="0">
+                  <div
+                    className="ui vertical animated button"
+                    tabIndex="0"
+                    onClick={handleAddToCart}
+                  >
                     <div className="hidden content">
                       <i className="shop icon"></i>
                     </div>

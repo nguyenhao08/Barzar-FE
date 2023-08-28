@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
-function ManageProduct() {
+function ManageProduct({}) {
   const [selectedItems, setSelectedItems] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
@@ -12,6 +12,8 @@ function ManageProduct() {
   const [deletingItem, setDeletingItem] = useState(null);
   const [displayedProductss, setDisplayedProducts] = useState([]);
   const [showGoToTop, setShowGoToTop] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const productsPerPage = 12;
 
@@ -111,6 +113,15 @@ function ManageProduct() {
     }
   };
 
+  const handleLogout = () => {
+    // Xóa thông tin đăng nhập khỏi localStorage
+
+    localStorage.removeItem("role");
+    // Đặt lại trạng thái đăng nhập
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light shadow">
@@ -139,9 +150,10 @@ function ManageProduct() {
             <div class="navbar align-self-center d-flex">
               <a
                 class="nav-icon position-relative text-decoration-none"
-                href={`/`}
+                onClick={handleLogout}
+                href="/"
               >
-                <i class="fa fa-fw  fa-sign-out-alt">Sign-Out</i>
+                <i class="">Sign-Out</i>
               </a>
             </div>
           </div>
@@ -280,7 +292,7 @@ function ManageProduct() {
               src="//theme.hstatic.net/1000026602/1001065742/14/arrow_final.png?v=727"
               style={{ overflow: "hidden" }}
             />
-            <i class="fa fa-angle-up hidden"></i>
+            <i class=" hidden"></i>
           </a>
         )}
       </div>

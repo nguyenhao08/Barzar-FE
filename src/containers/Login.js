@@ -1,40 +1,69 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import backgroundImage from "../asset/images/bg-01.jpg";
-import { useState, useEffect } from "react";
 
-function Login({ setIsLoggedIn }) {
+function Login({ setUserRole, setIsLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  const [redirectTo, setRedirectTo] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsDisabled(!email || !password);
-  }, [email, password]);
+    const hasError = !email || !password || error !== "";
+    setIsDisabled(hasError);
+  }, [email, password, error]);
 
   useEffect(() => {
     if (!email || !password) {
       setError("");
     } else if (password.length < 10 || password.length > 30) {
-      setError("Password phải có ít nhất 10 ký tự và không quá 30 ký tự");
+      setError("Password must be between 10 and 30 characters");
     } else if (!validateEmail(email)) {
-      setError("Email không hợp lệ");
+      setError("Invalid email");
     } else {
       setError("");
     }
   }, [email, password]);
 
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const storedLoggedInFlag = localStorage.getItem("isLoggedIn");
+
+      if (storedLoggedInFlag === "true") {
+        setIsLoggedIn(true);
+        const storedUserRole = localStorage.getItem("role");
+        setUserRole(storedUserRole);
+
+        if (storedUserRole === "admin") {
+          setRedirectTo("/manage/products");
+        } else if (storedUserRole === "user") {
+          setRedirectTo("/");
+        }
+      } else {
+        setIsLoggedIn(false);
+      }
+
+      setIsLoading(false);
+    };
+
+    checkAuthentication();
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!error) {
-      // Gửi thông tin đăng nhập đến server để xác thực
       console.log(`Email: ${email}, Password: ${password}`);
       setEmail("");
       setPassword("");
     }
   };
+  if (isLoading) {
+    return <div>Loading...</div>; // Replace with your own loading indicator or component
+  }
 
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -48,6 +77,7 @@ function Login({ setIsLoggedIn }) {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -57,37 +87,35 @@ function Login({ setIsLoggedIn }) {
       });
 
       if (res.status === 200) {
-        const { role } = res.data;
+        const { role, id } = res.data;
 
-        if (role === "admin") {
-          // Save login information to localStorage
-          localStorage.setItem("email", email);
-          setIsLoggedIn(true); // Update the isLoggedIn state to true
-
-          // Redirect to manage/products
-          window.location.href = "/manage/products";
-        } else if (role === "user") {
-          // Save login information to localStorage
-          localStorage.setItem("email", email);
-          setIsLoggedIn(true); // Update the isLoggedIn state to true
-
-          // Redirect to home
-          window.location.href = "/";
-        } else {
-          // Invalid role
-          console.log("Invalid role");
+        if (role === "admin" || role === "user") {
+          // Save login information to localStorage if rememberMe is checked
+          if (rememberMe) {
+            localStorage.setItem("email", email);
+            localStorage.setItem("password", password);
+          } else {
+            localStorage.removeItem("email");
+            localStorage.removeItem("password");
+          }
+          localStorage.setItem("id", id);
+          localStorage.setItem("role", role);
+          localStorage.setItem("isLoggedIn", true);
+          setIsLoggedIn(true);
+          setUserRole(role);
+          setRedirectTo(role === "admin" ? "/manage/products" : "/");
         }
-      } else {
-        // Login failed
-        console.log("Login failed");
-        // Handle appropriate message or action
       }
       setEmail("");
       setPassword("");
     } catch (error) {
-      console.error(error);
+      setError("Email or Password is incorrect");
     }
   };
+
+  if (redirectTo) {
+    return <Redirect to={redirectTo} />;
+  }
 
   return (
     <div
@@ -98,15 +126,16 @@ function Login({ setIsLoggedIn }) {
         <form onSubmit={handleSubmit}>
           <h3 className="text-center">ACCOUNT LOGIN</h3>
           <div className="mb-2">
-            <label type="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
-              id="password"
-              name="password"
+              id="email"
+              name="email"
               placeholder="Enter your email"
               className="form-control"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
+              autoComplete="on"
             />
           </div>
           <div className="mb-2">
@@ -118,7 +147,8 @@ function Login({ setIsLoggedIn }) {
               placeholder="Enter your email Password"
               className="form-control"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
+              autoComplete="on"
             />
           </div>
 
@@ -127,6 +157,8 @@ function Login({ setIsLoggedIn }) {
               type="checkbox"
               className="custom-control custom-checkbox"
               id="check"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
             />
 
             <label htmlFor="check" className="custom-input-lable ms-2">

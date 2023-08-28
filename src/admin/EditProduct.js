@@ -59,19 +59,6 @@ function Editprd() {
     dispatch(selectedProduct(updatedProduct));
   };
 
-  {
-    /*  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implement the logic to update the product using the updated product state
-    axios
-      .put(`http://localhost:8080/products/${id}`, product)
-      .then(() => {
-        // Handle success, e.g., show a success message and redirect to the product list
-      })
-      .catch((error) => console.log(error));
-  };*/
-  }
-
   const [previewImage, setPreviewImage] = useState(null);
   const [images, setImage] = useState("");
 
@@ -160,7 +147,7 @@ function Editprd() {
                 class="nav-icon position-relative text-decoration-none"
                 href={`/`}
               >
-                <i class="fa fa-fw  fa-sign-out-alt">Sign-Out</i>
+                <i>Sign-Out</i>
               </a>
             </div>
           </div>

@@ -6,10 +6,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import ProductListing from "./containers/ProductListing";
-import Header from "./containers/Header";
 import "./App.css";
 import ProductDetails from "./containers/ProductDetails";
-import Footer from "./containers/Footer";
+
 import Notfound from "./containers/Notfound";
 import Homepage from "./containers/Home";
 import About from "./containers/About";
@@ -21,11 +20,11 @@ import Editprd from "./admin/EditProduct";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState("");
 
   function requireLogin(Component, props) {
     if (isLoggedIn) {
-      const isAdmin =
-        props.location.state && props.location.state.role === "admin";
+      const isAdmin = userRole === "admin";
 
       if (isAdmin) {
         return <Component {...props} />;
@@ -36,7 +35,20 @@ function App() {
       return <Redirect to="/login" />;
     }
   }
+  function requireLogin(Component, props) {
+    if (isLoggedIn) {
+      const isAdmin = userRole === "admin";
 
+      if (isAdmin) {
+        return <Component {...props} />;
+      } else {
+        return <Redirect to="/" />;
+      }
+    } else {
+      return <Redirect to="/login" />;
+    }
+  }
+  console.log("Rule: ", { userRole });
   return (
     <div className="App">
       <Router>
@@ -46,18 +58,29 @@ function App() {
           <Route path="/shop" exact component={ProductListing} />
           <Route path="/product/:productId" component={ProductDetails} />
           <Route path="/register" component={Register} />
+
           <Route
             path="/login"
             render={(props) => (
-              <Login {...props} setIsLoggedIn={setIsLoggedIn} />
+              <Login
+                {...props}
+                setIsLoggedIn={setIsLoggedIn}
+                setUserRole={setUserRole}
+              />
             )}
           />
           <Route
             path="/manage/products"
             render={(props) => requireLogin(ManageProduct, props)}
           />
-          <Route path="/manage/product/add" component={Addprd} />
-          <Route path="/manage/product/edit/:productId" component={Editprd} />
+          <Route
+            path="/manage/product/add"
+            render={(props) => requireLogin(Addprd, props)}
+          />
+          <Route
+            path="/manage/product/edit/:productId"
+            render={(props) => requireLogin(Editprd, props)}
+          />
           <Route component={Notfound} />
         </Switch>
       </Router>

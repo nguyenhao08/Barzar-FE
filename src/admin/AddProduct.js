@@ -25,51 +25,6 @@ function Addprd() {
 
   const dispatch = useDispatch();
 
-  {
-    /*  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      handleSubmit &&
-      (title === "" ||
-        price === "" ||
-        description === "" ||
-        image === "" ||
-        quantity === "" ||
-        detail === "")
-    ) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-
-    const product = {
-      title,
-      price,
-      description,
-      category,
-      image,
-      quantity,
-      detail,
-      currency,
-    };
-
-    dispatch(addProduct(product));
-
-    setTitle("");
-    setPrice("");
-    setCategory("");
-    setDescription("");
-    setDetail("");
-    setImage("");
-    setQuantity("");
-    setCurrency("");
-    toast.success("Product added successfully");
-
-    setTimeout(() => {
-      window.location.reload(); // Tải lại trang sau khi thêm thành công
-    }, 2000);
-  };*/
-  }
-
   // Err validation
   const [titleError, setTitleError] = useState("");
   const [priceError, setPriceError] = useState("");

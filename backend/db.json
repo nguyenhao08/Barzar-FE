@@ -44,8 +44,43 @@
     {
       "id": 5,
       "email": "normal.user@gmail.com",
-      "password": "pass123@",
+      "password": "pass12333@@",
       "role": "user"
+    },
+    {
+      "email": "nghao08@gmail.com",
+      "password": "hao20012001",
+      "name": "Nguyen Hao",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "email": "hao08@gmail.com",
+      "password": "hao20012001@",
+      "name": "NgHao",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "email": "hao1@gmail.com",
+      "password": "hao20012001",
+      "name": "hao",
+      "role": "user",
+      "id": 8
+    },
+    {
+      "email": "hao08@gmail.com",
+      "password": "hao20012001",
+      "name": "NgHao",
+      "role": "user",
+      "id": 9
+    },
+    {
+      "email": "hao11@gmail.com",
+      "password": "hao20012001",
+      "name": "Nguyên Hào",
+      "role": "user",
+      "id": 10
     }
   ],
   "products": [

@@ -4,7 +4,9 @@ import {
   selectedProductsReducer,
   addProduct,
 } from "./productsReducer";
-import { editProduct } from "../actions/productsActions";
+import { editProduct } from "./productsReducer";
+import cartReducer from "./cartReducer";
+
 const reducers = combineReducers({
   allProducts: productsReducer,
   product: selectedProductsReducer,
