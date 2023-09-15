@@ -136,7 +136,7 @@ const Checkout = () => {
     };
     console.log(cartItems);
 
-    fetch("http://localhost:8080/orderinformation", {
+    fetch("http://localhost:4000/orderinformation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
