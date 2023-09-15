@@ -1,7 +1,12 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import React, { useEffect } from "react";
 
 function About() {
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "About - NH";
+  }, []);
   return (
     <>
       <Header />
@@ -82,7 +87,7 @@ function About() {
                       <div className="carousel-item active">
                         <div className="row">
                           <div className="col-3 p-md-5">
-                            <a href="#">
+                            <a href="/shop">
                               <img
                                 className="img-fluid "
                                 src="assets/img/brand_02.png"
@@ -91,7 +96,7 @@ function About() {
                             </a>
                           </div>
                           <div className="col-3 p-md-5">
-                            <a href="#">
+                            <a href="/shop">
                               <img
                                 className="img-fluid"
                                 src="assets/img/brand_01.png"
@@ -100,7 +105,7 @@ function About() {
                             </a>
                           </div>
                           <div className="col-3 p-md-5">
-                            <a href="#">
+                            <a href="/shop">
                               <img
                                 className="img-fluid "
                                 src="assets/img/brand_03.png"
@@ -109,7 +114,7 @@ function About() {
                             </a>
                           </div>
                           <div className="col-3 p-md-5">
-                            <a href="#">
+                            <a href="/shop">
                               <img
                                 className="img-fluid "
                                 src="assets/img/brand_04.png"

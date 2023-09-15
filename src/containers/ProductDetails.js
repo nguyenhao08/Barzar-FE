@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import {
   selectedProduct,
   removeSelectedProduct,
@@ -11,14 +12,16 @@ import {
 
 import Header from "./Header";
 import Footer from "./Footer";
+
 const ProductDetails = () => {
   const { productId } = useParams();
   const product = useSelector((state) => state.product);
   const { image, title, price, category, currency, detail } = product;
   const dispatch = useDispatch();
+
   const fetchProductDetail = async (id) => {
     const response = await axios
-      .get(`http://localhost:8080/products/${id}`)
+      .get(`http://localhost:4000/products/${id}`)
       .catch((err) => {});
     dispatch(selectedProduct(response.data));
   };
@@ -29,6 +32,7 @@ const ProductDetails = () => {
       dispatch(removeSelectedProduct());
     };
   }, [productId]);
+
   const handleAddToCart = () => {
     const productData = {
       id: productId,
@@ -37,36 +41,64 @@ const ProductDetails = () => {
       price,
       quantity: 1,
     };
-    dispatch(addToCart(productData));
+
+    // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItem = cartItems.find((item) => item.title === title);
+    if (existingItem) {
+      // Nếu sản phẩm đã tồn tại, tăng số lượng lên 1
+      existingItem.quantity += 1;
+    } else {
+      // Nếu sản phẩm chưa tồn tại, thêm sản phẩm mới vào giỏ hàng
+      cartItems.push(productData);
+    }
+
+    // Cập nhật giỏ hàng trong localStorage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    window.location.reload();
   };
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = `${title}`;
+  }, [title]);
   return (
     <>
       <Header />
-      <div className="ui grid container">
+      <div className="container">
         {Object.keys(product).length === 0 ? (
-          <div>...Loading</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <FontAwesomeIcon icon={faCircleNotch} spin size="3x" />
+          </div>
         ) : (
           <div className="ui segment">
             <div className="ui two column stackable center aligned grid">
               <div className="ui vertical divider">AND</div>
               <div className="middle aligned row">
                 <div className="column lp">
-                  <img className="ui fluid image" src={image} />
+                  <img className="ui fluid image" src={image} alt={title} />
                 </div>
                 <div className="column rp">
                   <h1>{title}</h1>
                   <h2>
                     <a className="ui teal tag label">
-                      {price} {currency}
+                      {(price * 1).toLocaleString()} {currency}
                     </a>
                   </h2>
                   <h3 className="ui brown block header">{category}</h3>
                   <p>
                     {detail.split("\n").map((line, index) => (
-                      <>
+                      <React.Fragment key={index}>
                         {line}
                         <br />
-                      </>
+                      </React.Fragment>
                     ))}
                   </p>
                   <div

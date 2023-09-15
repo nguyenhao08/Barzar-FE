@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -112,19 +112,22 @@ function Addprd() {
     setCurrency("");
     alert("Product added successfully");
 
-    window.location.reload(); // Reload page
+    window.location.href = "/manage/products"; // Reload page
   };
-
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "Admin - NH";
+  }, []);
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-          <a class="navbar-brand text-success logo h1 align-self-center">
+      <nav className="navbar navbar-expand-lg navbar-light shadow">
+        <div className="container d-flex justify-content-between align-items-center">
+          <a className="navbar-brand text-success logo h1 align-self-center">
             Admin-NH
           </a>
 
           <button
-            class="navbar-toggler border-0"
+            className="navbar-toggler border-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#templatemo_main_nav"
@@ -132,36 +135,36 @@ function Addprd() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
           <div
-            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+            className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
             id="templatemo_main_nav"
           >
-            <div class="flex-fill">
-              <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href={`/manage/products`}>
+            <div className="flex-fill">
+              <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                <li className="nav-item">
+                  <a className="nav-link" href={`/manage/products`}>
                     Products List
                   </a>
                 </li>
               </ul>
             </div>
-            <div class="navbar align-self-center d-flex">
+            <div className="navbar align-self-center d-flex">
               <a
-                class="nav-icon position-relative text-decoration-none"
+                className="nav-icon position-relative text-decoration-none"
                 href={`/`}
               >
-                <i class="fa fa-fw  fa-sign-out-alt">Sign-Out</i>
+                <i>Sign-Out</i>
               </a>
             </div>
           </div>
         </div>
       </nav>
 
-      <form class="form-container" onSubmit={handleSubmit}>
-        <div class="form-row">
+      <form className="form-container" onSubmit={handleSubmit}>
+        <div className="form-row">
           <label className="form-label">Name:</label>
           <div className="form-row1">
             <input
@@ -180,7 +183,7 @@ function Addprd() {
             )}
           </div>
 
-          <label class="form-label">Price:</label>
+          <label className="form-label">Price:</label>
           <div className="form-row1">
             <input
               type="number"
@@ -198,7 +201,7 @@ function Addprd() {
             )}
           </div>
 
-          <label class="form-label">Quantity:</label>
+          <label className="form-label">Quantity:</label>
           <div className="form-row1">
             <input
               type="number"
@@ -216,9 +219,9 @@ function Addprd() {
             )}
           </div>
 
-          <label class="form-label">Currency:</label>
+          <label className="form-label">Currency:</label>
           <select
-            class="form-row"
+            className="form-row"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
           >
@@ -226,8 +229,8 @@ function Addprd() {
             <option value="USD">USD</option>
           </select>
         </div>
-        <div class="form-row">
-          <label class="form-label">Short Description:</label>
+        <div className="form-row">
+          <label className="form-label">Short Description:</label>
           <div className="form-row1">
             <input
               type="text"
@@ -244,9 +247,9 @@ function Addprd() {
               </span>
             )}
           </div>
-          <label class="form-label">Category:</label>
+          <label className="form-label">Category:</label>
           <select
-            class="form-row"
+            className="form-row"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -255,8 +258,8 @@ function Addprd() {
             <option value="other">Other Product </option>
           </select>
         </div>
-        <div class="form-row-2">
-          <label class="form-label">Details:</label>
+        <div className="form-row-2">
+          <label className="form-label">Details:</label>
 
           <textarea
             type="text"
@@ -272,9 +275,9 @@ function Addprd() {
           )}
 
           <div>
-            <label class="form-label">Image URL:</label>
+            <label className="form-label">Image URL:</label>
             {previewImage && (
-              <img src={previewImage} alt="Preview" class="form-image" />
+              <img src={previewImage} alt="Preview" className="form-image" />
             )}
 
             <input
@@ -295,14 +298,18 @@ function Addprd() {
         </div>
 
         <hr />
-        <div class="form-group" style={{ marginLeft: "30px" }}>
-          <div class="col-sm-offset-3 col-sm-9">
-            <a type="submit" class="btn btn-primary" href="/manage/products">
+        <div className="form-group" style={{ marginLeft: "30px" }}>
+          <div className="col-sm-offset-3 col-sm-9">
+            <a
+              type="submit"
+              className="btn btn-primary"
+              href="/manage/products"
+            >
               Cancel
             </a>
             <button
               type="submit"
-              class="btn btn-primary"
+              className="btn btn-primary"
               style={{ marginLeft: "20px" }}
             >
               Add Product

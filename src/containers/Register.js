@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +12,6 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
-  const [redirectTo, setRedirectTo] = useState("");
 
   useEffect(() => {
     const hasError = !email || !password || !name || error !== "";
@@ -71,10 +70,7 @@ function Register() {
           };
 
           // Gửi yêu cầu POST đến server
-          const response = await axios.post(
-            "http://localhost:4000/users",
-            newUser
-          );
+          await axios.post("http://localhost:4000/users", newUser);
           toast.success("Registration successful!");
 
           setEmail("");
@@ -83,7 +79,7 @@ function Register() {
           setConfirmPassword("");
           setError("");
           setTimeout(() => {
-            setRedirectTo("/login");
+            window.location.href = "/login";
           }, 1500);
         }
       } catch (error) {
@@ -94,9 +90,10 @@ function Register() {
       setError("Passwords do not match");
     }
   };
-  if (redirectTo) {
-    return <Redirect to={redirectTo} />;
-  }
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "Register - NH";
+  }, []);
 
   return (
     <>
@@ -105,6 +102,11 @@ function Register() {
         className="login template d-flex justify-content-center align-items-center 100-w vh-100 "
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
+        <a href="/">
+          <h2 className="h2 text-success border-bottom pb-3 border-light logo1">
+            NH Store
+          </h2>
+        </a>
         <div className="form_container p-5 rounded ">
           <form onSubmit={handleSubmit}>
             <h3 className="text-center">Register</h3>
@@ -158,15 +160,15 @@ function Register() {
 
             <div className="d-gird">
               {error && <div style={{ color: "red" }}>{error}</div>}
-              <button className="btn btn-primary" disabled={isDisabled}>
+              <button className="btn1 btn-primary" disabled={isDisabled}>
                 Register
               </button>
             </div>
             <p className="text-end mt-2">
               Already Registerd?
-              <Link to="/login" className="ms-2">
+              <a href="/login" className="ms-2">
                 Login
-              </Link>
+              </a>
             </p>
           </form>
         </div>

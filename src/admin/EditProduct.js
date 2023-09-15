@@ -19,7 +19,7 @@ function Editprd() {
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
     const response = await axios
-      .get(`http://localhost:8080/products/${id}`)
+      .get(`http://localhost:4000/products/${id}`)
       .catch((err) => {});
     dispatch(selectedProduct(response.data));
   };
@@ -100,7 +100,7 @@ function Editprd() {
       return;
     }
     axios
-      .put(`http://localhost:8080/products/${productId}`, product)
+      .put(`http://localhost:4000/products/${productId}`, product)
       .then(() => {})
       .catch((error) => console.log(error));
     setTimeout(() => {
@@ -109,16 +109,21 @@ function Editprd() {
     toast.success("Product edit successfully");
   };
 
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "Admin - NH";
+  }, []);
+
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-          <a class="navbar-brand text-success logo h1 align-self-center">
+      <nav className="navbar navbar-expand-lg navbar-light shadow">
+        <div className="container d-flex justify-content-between align-items-center">
+          <a className="navbar-brand text-success logo h1 align-self-center">
             Admin-NH
           </a>
 
           <button
-            class="navbar-toggler border-0"
+            className="navbar-toggler border-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#templatemo_main_nav"
@@ -126,25 +131,25 @@ function Editprd() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
           <div
-            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+            className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
             id="templatemo_main_nav"
           >
-            <div class="flex-fill">
-              <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href={`/manage/products`}>
+            <div className="flex-fill">
+              <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                <li className="nav-item">
+                  <a className="nav-link" href={`/manage/products`}>
                     Products List
                   </a>
                 </li>
               </ul>
             </div>
-            <div class="navbar align-self-center d-flex">
+            <div className="navbar align-self-center d-flex">
               <a
-                class="nav-icon position-relative text-decoration-none"
+                className="nav-icon position-relative text-decoration-none"
                 href={`/`}
               >
                 <i>Sign-Out</i>
@@ -154,55 +159,64 @@ function Editprd() {
         </div>
       </nav>
       <ToastContainer />
-      <form class="form-container" onSubmit={handleSubmit}>
-        <div class="form-row">
-          <label class="form-label">Name:</label>
+      <form className="form-container" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <label className="form-label">Name:</label>
           <div className="form-row1">
             <input
               type="text"
-              class={`form-input ${errors.title && "error-input"}`}
+              className={`form-input ${errors.title && "error-input"}`}
               value={product.title}
               onChange={handleTitleChange}
             />
 
             {errors.title && (
-              <span class="error" style={{ color: "red", paddingBottom: 10 }}>
+              <span
+                className="error"
+                style={{ color: "red", paddingBottom: 10 }}
+              >
                 {errors.title}
               </span>
             )}
           </div>
-          <label class="form-label">Price:</label>
+          <label className="form-label">Price:</label>
           <div className="form-row1">
             <input
               type="number"
-              class={`form-input ${errors.price && "error-input"}`}
+              className={`form-input ${errors.price && "error-input"}`}
               value={product.price}
               onChange={handlePriceChange}
             />
             {errors.price && (
-              <span class="error" style={{ color: "red", paddingBottom: 10 }}>
+              <span
+                className="error"
+                style={{ color: "red", paddingBottom: 10 }}
+              >
                 {errors.price}
               </span>
             )}
           </div>
 
-          <label class="form-label">Quantity:</label>
+          <label className="form-label">Quantity:</label>
           <div className="form-row1">
             <input
               type="number"
-              class={`form-input ${errors.quantity && "error-input"}`}
+              className={`form-input ${errors.quantity && "error-input"}`}
               value={product.quantity}
               onChange={handleQuantityChange}
             />
             {errors.quantity && (
-              <span class="error" style={{ color: "red", paddingBottom: 10 }}>
+              <span
+                className="error"
+                style={{ color: "red", paddingBottom: 10 }}
+              >
                 {errors.quantity}
               </span>
             )}
           </div>
-          <label class="form-label">Currency:</label>
+          <label className="form-label">Currency:</label>
           <select
-            class="form-row"
+            className="form-row"
             value={product.currency}
             onChange={handleCurrencyChange}
           >
@@ -210,24 +224,27 @@ function Editprd() {
             <option value="USD">USD</option>
           </select>
         </div>
-        <div class="form-row">
-          <label class="form-label">Short Description:</label>
+        <div className="form-row">
+          <label className="form-label">Short Description:</label>
           <div className="form-row1">
             <input
               type="text"
-              class={`form-input ${errors.description && "error-input"}`}
+              className={`form-input ${errors.description && "error-input"}`}
               value={product.description}
               onChange={handleDescriptionChange}
             />
             {errors.description && (
-              <span class="error" style={{ color: "red", paddingBottom: 10 }}>
+              <span
+                className="error"
+                style={{ color: "red", paddingBottom: 10 }}
+              >
                 {errors.description}
               </span>
             )}
           </div>
-          <label class="form-label">Category:</label>
+          <label className="form-label">Category:</label>
           <select
-            class="form-row"
+            className="form-row"
             value={product.category}
             onChange={handleCategoryChange}
           >
@@ -236,55 +253,61 @@ function Editprd() {
             <option value="other">Other Product </option>
           </select>
         </div>
-        <div class="form-row-2">
-          <label class="form-label">Details:</label>
+        <div className="form-row-2">
+          <label className="form-label">Details:</label>
 
           <textarea
             type="text"
-            class={`form-input ${errors.detail && "error-input"}`}
+            className={`form-input ${errors.detail && "error-input"}`}
             value={product.detail}
             onChange={handleDetailChange}
           />
           {errors.detail && (
-            <span class="error" style={{ color: "red", paddingBottom: 10 }}>
+            <span className="error" style={{ color: "red", paddingBottom: 10 }}>
               {errors.detail}
             </span>
           )}
 
           <div>
-            <label class="form-label">Image URL:</label>
+            <label className="form-label">Image URL:</label>
             {product.image && (
-              <img src={product.image} alt="Preview" class="form-image" />
+              <img src={product.image} alt="Preview" className="form-image" />
             )}
           </div>
 
           <input
-            class={`form-input ${errors.image && "error-input"}`}
+            className={`form-input ${errors.image && "error-input"}`}
             type="text"
             onChange={handleImageChange}
             value={product.image}
           />
           <div className="form-row1">
             {errors.image && (
-              <span class="error" style={{ color: "red", paddingBottom: 10 }}>
+              <span
+                className="error"
+                style={{ color: "red", paddingBottom: 10 }}
+              >
                 {errors.image}
               </span>
             )}
           </div>
         </div>
-
         <hr />
-        <div class="form-group" style={{ marginLeft: "30px" }}>
-          <div class="col-sm-offset-3 col-sm-9">
-            <a type="submit" class="btn btn-primary" href="/manage/products">
+        <div className="form-group" style={{ marginLeft: "30px" }}>
+          <div className="col-sm-offset-3 col-sm-9">
+            <a
+              type="submit"
+              className="btn btn-primary"
+              href="/manage/products"
+            >
               Cancel
             </a>
             <button
               type="submit"
-              class="btn btn-primary"
+              className="btn btn-primary"
               style={{ marginLeft: "20px" }}
             >
-              Edit Product
+              Update Product
             </button>
           </div>
         </div>

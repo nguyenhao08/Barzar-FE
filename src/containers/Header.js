@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import axios from "axios";
+import "font-awesome/css/font-awesome.min.css";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
+
   const [name, setName] = useState("");
+  const [total, setTotal] = useState(0); // Tổng số lượng sản phẩm
 
   useEffect(() => {
     const initialLoggedInStatus = localStorage.getItem("isLoggedIn");
     setIsLoggedIn(initialLoggedInStatus === "true");
-    setLoading(false);
 
     // Lấy thuộc tính "name" từ API khi đăng nhập thành công
     if (initialLoggedInStatus === "true") {
@@ -19,6 +20,14 @@ const Header = () => {
         setName(response.data.name);
       });
     }
+
+    // Tính tổng số lượng sản phẩm trong localStorage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const totalQuantity = cartItems.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    setTotal(totalQuantity);
   }, []);
 
   const handleLogout = () => {
@@ -27,10 +36,6 @@ const Header = () => {
     localStorage.removeItem("role");
     localStorage.removeItem("isLoggedIn");
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
@@ -62,72 +67,81 @@ const Header = () => {
             <div className="flex-fill">
               <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to={`${process.env.PUBLIC_URL}/`}>
+                  <a className="nav-link" href={`${process.env.PUBLIC_URL}/`}>
                     Home
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <Link
+                  <a
                     className="nav-link"
-                    to={`${process.env.PUBLIC_URL}/about`}
+                    href={`${process.env.PUBLIC_URL}/about`}
                   >
                     About
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <Link
+                  <a
                     className="nav-link"
-                    to={`${process.env.PUBLIC_URL}/shop`}
+                    href={`${process.env.PUBLIC_URL}/shop`}
                   >
                     Shop
-                  </Link>
+                  </a>
                 </li>
 
                 <li className="nav-item">
-                  <Link
+                  <a
                     className="nav-link"
-                    to={`${process.env.PUBLIC_URL}/contact.html`}
+                    href={`${process.env.PUBLIC_URL}/contact`}
                   >
                     Contact
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
             <div className="navbar align-self-center d-flex">
-              <Link
+              <a
+                href={`${process.env.PUBLIC_URL}/cart`}
                 className="nav-icon position-relative text-decoration-none"
-                to={`${process.env.PUBLIC_URL}/cart`}
               >
                 <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                  7
-                </span>
-              </Link>
+                {total > 0 && (
+                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                    {total}
+                  </span>
+                )}
+              </a>
 
               {isLoggedIn ? (
-                <Link
-                  className="nav-icon position-relative text-decoration-none"
-                  onClick={handleLogout}
-                >
-                  <i className="text-dark mr-1">Welcome {name} </i>
-                  <i
-                    className="fa fa-fw fa-sign-out-alt text-dark mr-1"
-                    style={{ marginLeft: "20px" }}
-                  ></i>
-                  LogOut
-                </Link>
+                <div>
+                  <i className="text-dark mr-1">
+                    Welcome <strong> {name}</strong>{" "}
+                  </i>
+                  <a
+                    className="nav-icon position-relative text-decoration-none"
+                    onClick={handleLogout}
+                  >
+                    <i
+                      className="fa fa-fw fa-user text-dark mr-1"
+                      style={{ marginLeft: "20px" }}
+                    ></i>
+                    LogOut
+                  </a>
+                </div>
               ) : (
-                <Link
+                <a
                   className="nav-icon position-relative text-decoration-none"
-                  to={`${process.env.PUBLIC_URL}/login`}
+                  href={`${process.env.PUBLIC_URL}/login`}
                 >
                   <i className="fa fa-fw fa-user text-dark mr-1">Login</i>
-                </Link>
+                </a>
               )}
             </div>
           </div>
         </div>
       </nav>
+      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="/assets/css/templatemo.css" />
+      <link rel="stylesheet" href="/assets/css/custom.css" />
     </>
   );
 };

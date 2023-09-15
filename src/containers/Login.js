@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import backgroundImage from "../asset/images/bg-01.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 function Login({ setUserRole, setIsLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
-  const [redirectTo, setRedirectTo] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const hasError = !email || !password || error !== "";
     setIsDisabled(hasError);
@@ -39,15 +38,20 @@ function Login({ setUserRole, setIsLoggedIn }) {
         setUserRole(storedUserRole);
 
         if (storedUserRole === "admin") {
-          setRedirectTo("/manage/products");
+          window.location.href = "/manage/products";
         } else if (storedUserRole === "user") {
-          setRedirectTo("/");
+          window.location.href = "/";
         }
       } else {
         setIsLoggedIn(false);
+        // Automatically fill in the email and password fields
+        const storedEmail = localStorage.getItem("email");
+        const storedPassword = localStorage.getItem("password");
+        const storedRememberMe = localStorage.getItem("rememberMe");
+        setEmail(storedEmail || "");
+        setPassword(storedPassword || "");
+        setRememberMe(storedRememberMe || "");
       }
-
-      setIsLoading(false);
     };
 
     checkAuthentication();
@@ -61,9 +65,6 @@ function Login({ setUserRole, setIsLoggedIn }) {
       setPassword("");
     }
   };
-  if (isLoading) {
-    return <div>Loading...</div>; // Replace with your own loading indicator or component
-  }
 
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -80,12 +81,14 @@ function Login({ setUserRole, setIsLoggedIn }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true); // Bật trạng thái chờ
+
     try {
       const res = await axios.post("http://localhost:4000/api/login", {
         email,
         password,
       });
-
       if (res.status === 200) {
         const { role, id } = res.data;
 
@@ -94,16 +97,22 @@ function Login({ setUserRole, setIsLoggedIn }) {
           if (rememberMe) {
             localStorage.setItem("email", email);
             localStorage.setItem("password", password);
+            localStorage.setItem("rememberMe", true);
           } else {
             localStorage.removeItem("email");
             localStorage.removeItem("password");
+            localStorage.removeItem("rememberMe");
           }
           localStorage.setItem("id", id);
           localStorage.setItem("role", role);
           localStorage.setItem("isLoggedIn", true);
           setIsLoggedIn(true);
           setUserRole(role);
-          setRedirectTo(role === "admin" ? "/manage/products" : "/");
+          if (role === "admin") {
+            window.location.href = "/manage/products";
+          } else {
+            window.location.href = "/";
+          }
         }
       }
       setEmail("");
@@ -111,17 +120,23 @@ function Login({ setUserRole, setIsLoggedIn }) {
     } catch (error) {
       setError("Email or Password is incorrect");
     }
+
+    setIsLoading(false); // Tắt trạng thái chờ
   };
-
-  if (redirectTo) {
-    return <Redirect to={redirectTo} />;
-  }
-
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "Login - NH";
+  }, []);
   return (
     <div
       className="login template d-flex justify-content-center align-items-center 100-w vh-100"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
+      <a href="/">
+        <h2 className="h2 text-success border-bottom pb-3 border-light logo1">
+          NH Store
+        </h2>
+      </a>
       <div className="form_container p-5 rounded  ">
         <form onSubmit={handleSubmit}>
           <h3 className="text-center">ACCOUNT LOGIN</h3>
@@ -138,7 +153,7 @@ function Login({ setUserRole, setIsLoggedIn }) {
               autoComplete="on"
             />
           </div>
-          <div className="mb-2">
+          <div className="mb2">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -166,27 +181,31 @@ function Login({ setUserRole, setIsLoggedIn }) {
             </label>
           </div>
 
-          <div className="d-gird">
+          <div className="d-grid">
             {error && <div style={{ color: "red" }}>{error}</div>}
 
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn1 btn-primary"
               disabled={isDisabled}
-              onClick={isDisabled ? null : handleLogin}
+              onClick={isLoading ? null : handleLogin}
             >
-              Login
+              {isLoading ? (
+                <FontAwesomeIcon icon={faCircleNotch} spin size="1x" />
+              ) : (
+                "Login"
+              )}
             </button>
 
             <p className="text-end mt-2">
               Don't have an account?
-              <Link
-                to="/register"
+              <a
+                href="/register"
                 className="ms-2"
                 style={{ color: "Purple-Red Bright" }}
               >
                 Register
-              </Link>
+              </a>
             </p>
           </div>
         </form>

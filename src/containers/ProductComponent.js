@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import React, { useMemo, useState, useEffect } from "react";
 
 const ProductComponent = ({ products }) => {
@@ -45,7 +43,7 @@ const ProductComponent = ({ products }) => {
 
           return (
             <div className="four wide column" key={id}>
-              <Link to={`/product/${id}`}>
+              <a href={`/product:${id}`}>
                 <div className="ui link cards">
                   <div className="card">
                     <div className="image">
@@ -54,14 +52,14 @@ const ProductComponent = ({ products }) => {
                     <div className="content">
                       <div className="header">{title}</div>
                       <div className="meta price">
-                        {price} {currency}
+                        {(price * 1).toLocaleString()} {currency}
                       </div>
                       <div className="meta">{description}</div>
                       <div className="meta">{category}</div>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </a>
             </div>
           );
         })}

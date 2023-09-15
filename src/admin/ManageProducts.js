@@ -2,23 +2,23 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import "../App.css";
 
 function ManageProduct({}) {
   const [selectedItems, setSelectedItems] = useState([]);
   const [products, setProducts] = useState([]);
-  const [selectAll, setSelectAll] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [deletingItem, setDeletingItem] = useState(null);
   const [displayedProductss, setDisplayedProducts] = useState([]);
   const [showGoToTop, setShowGoToTop] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const productsPerPage = 12;
 
   useEffect(() => {
-    fetch("http://localhost:8080/products")
+    fetch("http://localhost:4000/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.log(error));
@@ -27,15 +27,17 @@ function ManageProduct({}) {
     const handleScroll = (e) => {
       setShowGoToTop(window.scrollY >= 350);
     };
+
     window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
   const handleButtonClick = () => {
     window.scrollTo(0, 0);
   };
 
-  const handleCheckboxChange = (event, index) => {};
-
-  const handleSelectAllChange = (event) => {};
   const displayedProducts = useMemo(() => {
     // Tính toán danh sách sản phẩm hiển thị trên trang
     const startIndex = (currentPage - 1) * productsPerPage;
@@ -59,7 +61,7 @@ function ManageProduct({}) {
       const selectedProductId = selectedProduct.id;
 
       axios
-        .delete(`http://localhost:8080/products/${selectedProductId}`)
+        .delete(`http://localhost:4000/products/${selectedProductId}`)
         .then(() => {
           const updatedProducts = [...products];
           const updatedDisplayedProducts = [...displayedProducts];
@@ -99,7 +101,7 @@ function ManageProduct({}) {
       );
 
       axios
-        .delete(`http://localhost:8080/products/`, {
+        .delete(`http://localhost:4000/products/`, {
           data: { ids: selectedProductIds },
         })
         .then(() => {
@@ -122,16 +124,21 @@ function ManageProduct({}) {
     setIsLoggedIn(false);
   };
 
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "Admin - NH";
+  }, []);
+
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-          <a class="navbar-brand text-success logo h1 align-self-center">
+      <nav className="navbar navbar-expand-lg navbar-light shadow">
+        <div className="container d-flex justify-content-between align-items-center">
+          <a className="navbar-brand text-success logo h1 align-self-center">
             Admin-NH
           </a>
 
           <button
-            class="navbar-toggler border-0"
+            className="navbar-toggler border-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#templatemo_main_nav"
@@ -139,39 +146,39 @@ function ManageProduct({}) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
           <div
-            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+            className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
             id="templatemo_main_nav"
           >
-            <div class="flex-fill"></div>
-            <div class="navbar align-self-center d-flex">
+            <div className="flex-fill"></div>
+            <div className="navbar align-self-center d-flex">
               <a
-                class="nav-icon position-relative text-decoration-none"
+                className="nav-icon position-relative text-decoration-none"
                 onClick={handleLogout}
                 href="/"
               >
-                <i class="">Sign-Out</i>
+                <i className="">Sign-Out</i>
               </a>
             </div>
           </div>
         </div>
       </nav>
       <div
-        class="modal fade bg-white"
+        className="modal fade bg-white"
         id="templatemo_search"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="w-100 pt-1 mb-5 text-right">
+        <div className="modal-dialog modal-lg" role="document">
+          <div className="w-100 pt-1 mb-5 text-right">
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -179,21 +186,21 @@ function ManageProduct({}) {
           <form
             action=""
             method="get"
-            class="modal-content modal-body border-0 p-0"
+            className="modal-content modal-body border-0 p-0"
           >
-            <div class="input-group mb-2">
+            <div className="input-group mb-2">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="inputModalSearch"
                 name="q"
                 placeholder="Search ..."
               />
               <button
                 type="submit"
-                class="input-group-text bg-success text-light"
+                className="input-group-text bg-success text-light"
               >
-                <i class="fa fa-fw fa-search text-white"></i>
+                <i className="fa fa-fw fa-search text-white"></i>
               </button>
             </div>
           </form>
@@ -201,25 +208,14 @@ function ManageProduct({}) {
       </div>
       <div className="ui grid container">
         <div className="button">
-          <button className="btn btn-danger" onClick={handleDeleteSelect}>
-            Delete selections
-          </button>
           <a href={`product/add`} className="btn btn-sm btn-danger">
             Add Product
           </a>
         </div>
-
+        <ToastContainer />
         <table className="table">
-          <ToastContainer />
           <thead>
             <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  checked={selectAll}
-                  onChange={handleSelectAllChange}
-                />
-              </th>
               <th>Product ID</th>
               <th>Product Name</th>
               <th>Product Image</th>
@@ -229,84 +225,95 @@ function ManageProduct({}) {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {displayedProducts.map((product, index) => (
-              <tr key={index}>
-                <th>
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.includes(index)}
-                    onChange={(event) => handleCheckboxChange(event, index)}
-                  />
-                </th>
-                <td scope="row">{product.id}</td>
-                <td>{product.title}</td>
-                <td>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    style={{ height: "200px", width: "200px" }}
-                  />
-                </td>
-                <td>{product.description}</td>
-                <td>{product.price}</td>
-                <td>{product.quantity}</td>
-                <td>
-                  <a
-                    href={`/manage/product/edit/${product.id}`}
-                    className="btn btn-sm btn-info"
-                  >
-                    Edit
-                  </a>
-                  {deletingItem === index ? (
-                    <button className="btn btn-danger" disabled>
-                      Deleting...
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDelete(index)}
-                    >
-                      Delete
-                    </button>
-                  )}
+          {Object.keys(products).length === 0 ? (
+            <tfoot
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <tr>
+                <td colSpan="2">
+                  <FontAwesomeIcon icon={faCircleNotch} spin size="3x" />
                 </td>
               </tr>
-            ))}
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
+            </tfoot>
+          ) : (
+            <tbody>
+              {displayedProducts.map((product, index) => (
+                <tr key={index}>
+                  <td scope="row">{product.id}</td>
+                  <td>{product.title}</td>
+                  <td>
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      style={{ height: "200px", width: "200px" }}
+                    />
+                  </td>
+                  <td>{product.description}</td>
+                  <td>{product.price}</td>
+                  <td>{product.quantity}</td>
+                  <td>
+                    <a
+                      href={`/manage/product/edit/${product.id}`}
+                      className="btn btn-sm btn-info"
+                    >
+                      Edit
+                    </a>
+                    {deletingItem === index ? (
+                      <button className="btn btn-danger" disabled>
+                        Deleting...
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(index)}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          )}
         </table>
       </div>
-      <div className="scrolls">
-        {showGoToTop && (
-          <a
-            href="#"
-            class="scrolls"
-            style={{ display: "inline" }}
-            onChange={handleButtonClick}
-          >
-            <img
-              src="//theme.hstatic.net/1000026602/1001065742/14/arrow_final.png?v=727"
-              style={{ overflow: "hidden" }}
-            />
-            <i class=" hidden"></i>
-          </a>
-        )}
-      </div>
-      <div class="page-container">
+
+      <div className="page-container">
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
             disabled={currentPage === index + 1}
-            class="page-button"
+            className="page-button"
           >
             {index + 1}
           </button>
         ))}
+      </div>
+      <div className="scrolls">
+        {showGoToTop && (
+          <a
+            href="#"
+            className="scrolls"
+            style={{ display: "inline" }}
+            onClick={handleButtonClick}
+          >
+            <img
+              src="//theme.hstatic.net/1000026602/1001065742/14/arrow_final.png?v=727"
+              style={{ overflow: "hidden" }}
+              alt="Scroll to top"
+            />
+          </a>
+        )}
       </div>
     </>
   );

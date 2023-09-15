@@ -2,28 +2,29 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer class="bg-dark" id="tempaltemo_footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 pt-5">
-            <h2 class="h2 text-success border-bottom pb-3 border-light logo">
+    <footer className="bg-dark" id="tempaltemo_footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4 pt-5">
+            <h2 className="h2 text-success border-bottom pb-3 border-light logo">
               NH Store
             </h2>
-            <ul class="list-unstyled text-light footer-link-list">
+            <ul className="list-unstyled text-light footer-link-list">
               <li>
-                <i class="fas fa-map-marker-alt fa-fw"></i>
-                123 QN at BD
+                <i className="fas fa-map-marker-alt fa-fw"></i>
+                NH Store Center 2th floor, 379 Ghenh Rang, Quy Nhon, Binh Dinh,
+                VietNam
               </li>
               <li>
-                <i class="fa fa-phone fa-fw"></i>
-                <a class="text-decoration-none" href="tel:0345678910">
+                <i className="fa fa-phone fa-fw"></i>
+                <a className="text-decoration-none" href="tel:0345678910">
                   0345678910
                 </a>
               </li>
               <li>
-                <i class="fa fa-envelope fa-fw"></i>
+                <i className="fa fa-envelope fa-fw"></i>
                 <a
-                  class="text-decoration-none"
+                  className="text-decoration-none"
                   href="mailto:nguyenhao08@company.com"
                 >
                   nguyenhao08@company.com
@@ -32,118 +33,119 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div class="col-md-4 pt-5">
-            <h2 class="h2 text-light border-bottom pb-3 border-light">
+          <div className="col-md-4 pt-5">
+            <h2 className="h2 text-light border-bottom pb-3 border-light">
               Products
             </h2>
-            <ul class="list-unstyled text-light footer-link-list">
+            <ul className="list-unstyled text-light footer-link-list">
               <li>
-                <a class="text-decoration-none" href="#">
-                  Luxury
+                <a className="text-decoration-none" href="shop">
+                  All
                 </a>
               </li>
               <li>
-                <a class="text-decoration-none" href="#">
-                  Sport Wear
+                <a className="text-decoration-none" href="shop">
+                  Men's
                 </a>
               </li>
               <li>
-                <a class="text-decoration-none" href="#">
-                  Men's Shoes
+                <a className="text-decoration-none" href="shop">
+                  Women's
                 </a>
               </li>
               <li>
-                <a class="text-decoration-none" href="#">
-                  Women's Shoes
+                <a className="text-decoration-none" href="shop">
+                  Other Products
                 </a>
               </li>
             </ul>
           </div>
 
-          <div class="col-md-4 pt-5">
-            <h2 class="h2 text-light border-bottom pb-3 border-light">
+          <div className="col-md-4 pt-5">
+            <h2 className="h2 text-light border-bottom pb-3 border-light">
               Further Info
             </h2>
-            <ul class="list-unstyled text-light footer-link-list">
+            <ul className="list-unstyled text-light footer-link-list">
               <li>
-                <a class="text-decoration-none" href="#">
+                <a className="text-decoration-none" href="/">
                   Home
                 </a>
               </li>
               <li>
-                <a class="text-decoration-none" href="#">
+                <a className="text-decoration-none" href="about">
                   About Us
                 </a>
               </li>
 
               <li>
-                <a class="text-decoration-none" href="#">
+                <a className="text-decoration-none" href="contact">
                   Contact
-                </a>
-              </li>
-              <li>
-                <a class="text-decoration-none" href="#">
-                  Shop Locations
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="row text-light mb-4">
-          <div class="col-12 mb-3">
-            <div class="w-100 my-3 border-top border-light"></div>
+        <div className="row text-light mb-4">
+          <div className="col-12 mb-3">
+            <div className="w-100 my-3 border-top border-light"></div>
           </div>
-          <div class="col-auto me-auto">
-            <ul class="list-inline text-left footer-icons">
-              <li class="list-inline-item border border-light rounded-circle text-center">
+          <div className="col-auto me-auto">
+            <ul className="list-inline text-left footer-icons">
+              <li className="list-inline-item border border-light rounded-circle text-center">
                 <a
-                  class="text-light text-decoration-none"
+                  className="text-light text-decoration-none"
                   target="_blank"
                   href="http://facebook.com/"
                 >
-                  <i class="fab fa-facebook-f fa-lg fa-fw"></i>
+                  <i className="fab fa-facebook-f fa-lg fa-fw"></i>
                 </a>
               </li>
-              <li class="list-inline-item border border-light rounded-circle text-center">
+              <li className="list-inline-item border border-light rounded-circle text-center">
                 <a
-                  class="text-light text-decoration-none"
+                  className="text-light text-decoration-none"
                   target="_blank"
                   href="https://www.instagram.com/"
                 >
-                  <i class="fab fa-instagram fa-lg fa-fw"></i>
+                  <i className="fab fa-instagram fa-lg fa-fw"></i>
                 </a>
               </li>
-              <li class="list-inline-item border border-light rounded-circle text-center">
+              <li className="list-inline-item border border-light rounded-circle text-center">
                 <a
-                  class="text-light text-decoration-none"
+                  className="text-light text-decoration-none"
                   target="_blank"
                   href="https://twitter.com/"
                 >
-                  <i class="fab fa-twitter fa-lg fa-fw"></i>
+                  <i className="fab fa-twitter fa-lg fa-fw"></i>
                 </a>
               </li>
-              <li class="list-inline-item border border-light rounded-circle text-center">
+              <li className="list-inline-item border border-light rounded-circle text-center">
                 <a
-                  class="text-light text-decoration-none"
+                  className="text-light text-decoration-none"
                   target="_blank"
                   href="https://www.linkedin.com/"
                 >
-                  <i class="fab fa-linkedin fa-lg fa-fw"></i>
+                  <i className="fab fa-linkedin fa-lg fa-fw"></i>
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
-      <div class="w-100 bg-black py-3">
-        <div class="container">
-          <div class="row pt-2">
-            <div class="col-12">
-              <p class="text-left text-light">
-                Copyright &copy; 2023 NH | Designed by{" "}
-                <a rel="sponsored" href="#" target="_blank">
+      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="/assets/css/templatemo.css" />
+      <link rel="stylesheet" href="/assets/css/custom.css" />
+      <div className="w-100 bg-black py-3">
+        <div className="container">
+          <div className="row pt-2">
+            <div className="col-12">
+              <p className="text-left text-light">
+                Copyright &copy; 2023 NH | Designed by {""}
+                <a
+                  rel="sponsored"
+                  href={`${process.env.PUBLIC_URL}/`}
+                  target="_blank"
+                >
                   NH
                 </a>
               </p>

@@ -23,7 +23,7 @@ export const removeSelectedProduct = () => {
 export const addProduct = (product) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:8080/products", product)
+      .post("http://localhost:4000/products", product)
       .then((response) => {
         dispatch({
           type: ActionTypes.ADD_PRODUCT,

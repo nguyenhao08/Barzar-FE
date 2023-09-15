@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import { Helmet } from "react-helmet";
 
 function Homepage() {
   /////-----------//////////////
@@ -8,18 +9,18 @@ function Homepage() {
     <>
       <Header />
       <div
-        class="modal fade bg-white"
+        className="modal fade bg-white"
         id="templatemo_search"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="w-100 pt-1 mb-5 text-right">
+        <div className="modal-dialog modal-lg" role="document">
+          <div className="w-100 pt-1 mb-5 text-right">
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -27,21 +28,21 @@ function Homepage() {
           <form
             action=""
             method="get"
-            class="modal-content modal-body border-0 p-0"
+            className="modal-content modal-body border-0 p-0"
           >
-            <div class="input-group mb-2">
+            <div className="input-group mb-2">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="inputModalSearch"
                 name="q"
                 placeholder="Search ..."
               />
               <button
                 type="submit"
-                class="input-group-text bg-success text-light"
+                className="input-group-text bg-success text-light"
               >
-                <i class="fa fa-fw fa-search text-white"></i>
+                <i className="fa fa-fw fa-search text-white"></i>
               </button>
             </div>
           </form>
@@ -51,15 +52,15 @@ function Homepage() {
 
       <div
         id="template-mo-zay-hero-carousel"
-        class="carousel slide"
+        className="carousel slide"
         data-bs-ride="carousel"
-        data-bs-interval="10000"
+        data-bs-interval="3000"
       >
-        <ol class="carousel-indicators">
+        <ol className="carousel-indicators">
           <li
             data-bs-target="#template-mo-zay-hero-carousel"
             data-bs-slide-to="0"
-            class="active"
+            className="active"
           ></li>
           <li
             data-bs-target="#template-mo-zay-hero-carousel"
@@ -70,95 +71,103 @@ function Homepage() {
             data-bs-slide-to="2"
           ></li>
         </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row1">
-              <img class="banner" src="./assets/img/banner_01.png" alt="" />
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <div className="row1">
+              <img className="banner" src="./assets/img/banner_01.png" alt="" />
             </div>
           </div>
-          <div class="carousel-item ">
-            <div class="row1">
-              <div class="">
-                <img class="banner" src="./assets/img/banner_01.jpg" alt="" />
+          <div className="carousel-item ">
+            <div className="row1">
+              <div className="">
+                <img
+                  className="banner"
+                  src="./assets/img/banner_01.jpg"
+                  alt=""
+                />
               </div>
             </div>
           </div>
-          <div class="carousel-item ">
-            <div class="row1">
-              <div class="">
-                <img class="banner" src="./assets/img/banner_03.jpg" alt="" />
+          <div className="carousel-item ">
+            <div className="row1">
+              <div className="">
+                <img
+                  className="banner"
+                  src="./assets/img/banner_03.jpg"
+                  alt=""
+                />
               </div>
             </div>
           </div>
         </div>
         <a
-          class="carousel-control-prev text-decoration-none w-auto ps-3"
+          className="carousel-control-prev text-decoration-none w-auto ps-3"
           href="#template-mo-zay-hero-carousel"
           role="button"
           data-bs-slide="prev"
         >
-          <i class="fas fa-chevron-left"></i>
+          <i className="fas fa-chevron-left"></i>
         </a>
         <a
-          class="carousel-control-next text-decoration-none w-auto pe-3"
+          className="carousel-control-next text-decoration-none w-auto pe-3"
           href="#template-mo-zay-hero-carousel"
           role="button"
           data-bs-slide="next"
         >
-          <i class="fas fa-chevron-right"></i>
+          <i className="fas fa-chevron-right"></i>
         </a>
       </div>
       {/*End Banner */}
       {/*Start Categories of The Month */}
-      <section class="container py-5">
-        <div class="row text-center pt-3">
-          <div class="col-lg-6 m-auto">
-            <h1 class="h1">Categories of The Month</h1>
+      <section className="container py-5">
+        <div className="row text-center pt-3">
+          <div className="col-lg-6 m-auto">
+            <h1 className="h1">Categories of The Month</h1>
             <p>
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
               officia deserunt mollit anim id est laborum.
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#">
+        <div className="row">
+          <div className="col-12 col-md-4 p-5 mt-3">
+            <a href="/product:15">
               <img
-                src="./assets/img/category_img_01.jpg"
-                class="rounded-circle img-fluid border"
+                src="https://product.hstatic.net/1000026602/product/dsc02823_c7d561f325b04fca9e93d85730f62257_master.jpg"
+                className="rounded-circle img-fluid border"
               />
             </a>
-            <h5 class="text-center mt-3 mb-3">Watches</h5>
-            <p class="text-center">
-              <a class="btn btn-success" href="shop">
+            <h5 className="text-center mt-3 mb-3">Hat</h5>
+            <p className="text-center">
+              <a className="submit-button" href="/product:15">
                 Go Shop
               </a>
             </p>
           </div>
-          <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#">
+          <div className="col-12 col-md-4 p-5 mt-3">
+            <a href="/product:4">
               <img
-                src="./assets/img/category_img_02.jpg"
-                class="rounded-circle img-fluid border"
+                src="https://product.hstatic.net/1000026602/product/img_1182_af26dbec5d23499b8ba4ef906fc1d414_master.jpg"
+                className="rounded-circle img-fluid border"
               />
             </a>
-            <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
-            <p class="text-center">
-              <a class="btn btn-success" href="shop">
+            <h2 className="h5 text-center mt-3 mb-3">Bag</h2>
+            <p className="text-center">
+              <a className="submit-button" href="/product:4">
                 Go Shop
               </a>
             </p>
           </div>
-          <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#">
+          <div className="col-12 col-md-4 p-5 mt-3">
+            <a href="/product:3">
               <img
-                src="./assets/img/category_img_03.jpg"
-                class="rounded-circle img-fluid border"
+                src="https://product.hstatic.net/1000026602/product/img_0044_f2f9f82fb43b445686c959a8c382f9a8_master.jpg"
+                className="rounded-circle img-fluid border"
               />
             </a>
-            <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
-            <p class="text-center">
-              <a class="btn btn-success" href="shop">
+            <h2 className="h5 text-center mt-3 mb-3">Accessories</h2>
+            <p className="text-center">
+              <a className="submit-button" href="product:3">
                 Go Shop
               </a>
             </p>
@@ -166,101 +175,101 @@ function Homepage() {
         </div>
       </section>
 
-      <section class="bg-light">
-        <div class="container py-5">
-          <div class="row text-center py-3">
-            <div class="col-lg-6 m-auto">
-              <h1 class="h1">Featured Product</h1>
+      <section className="bg-light">
+        <div className="container py-5">
+          <div className="row text-center py-3">
+            <div className="col-lg-6 m-auto">
+              <h1 className="h1">Featured Product</h1>
               <p>
                 Reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident.
               </p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 col-md-4 mb-4">
-              <div class="card h-100">
-                <a href="shop-single.html">
+          <div className="row">
+            <div className="col-12 col-md-4 mb-4">
+              <div className="card h-100">
+                <a href="/product:41">
                   <img
-                    src="./assets/img/feature_prod_01.jpg"
-                    class="card-img-top"
+                    src="https://product.hstatic.net/1000026602/product/img_9213_80cc35f645cb4b32b51b0a1ab8bf5a49_master.jpg"
+                    className="card-img-top"
                     alt="..."
                   />
                 </a>
-                <div class="card-body">
+                <div className="card-body">
                   <a
-                    href="shop-single.html"
-                    class="h2 text-decoration-none text-dark"
+                    href="/product:41"
+                    className="h2 text-decoration-none text-dark"
                   >
-                    Gym Weight
+                    Vertical Blue White Pock
                   </a>
-                  <p class="card-text">
+                  <p className="card-text">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Sunt in culpa qui officia deserunt.
                   </p>
-                  <ul class="list-unstyled d-flex justify-content-between">
-                    <li class="text-muted text-right">$240.00</li>
+                  <ul className="list-unstyled d-flex justify-content-between">
+                    <li className="text text-right">280.00 VND </li>
                   </ul>
-                  <a class="text-muted" href="/shop">
+                  <a className="text-view" href="/product:41">
                     View
                   </a>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-4 mb-4">
-              <div class="card h-100">
-                <a href="shop-single.html">
+            <div className="col-12 col-md-4 mb-4">
+              <div className="card h-100">
+                <a href="/product:87">
                   <img
-                    src="./assets/img/feature_prod_02.jpg"
-                    class="card-img-top"
+                    src="https://product.hstatic.net/1000026602/product/img_9216_14b5f8c17aa544d7abae144a2d8fd476_master.jpg"
+                    className="card-img-top"
                     alt="..."
                   />
                 </a>
-                <div class="card-body">
+                <div className="card-body">
                   <a
-                    href="shop-single.html"
-                    class="h2 text-decoration-none text-dark"
+                    href="/product:87"
+                    className="h2 text-decoration-none text-dark"
                   >
-                    Cloud Nike Shoes
+                    Polo Blue Impress Placket
                   </a>
-                  <p class="card-text">
+                  <p className="card-text">
                     Aenean gravida dignissim finibus. Nullam ipsum diam, posuere
                     vitae pharetra sed, commodo ullamcorper.
                   </p>
-                  <ul class="list-unstyled d-flex justify-content-between">
-                    <li class="text-muted text-right">Price: $480.00</li>
+                  <ul className="list-unstyled d-flex justify-content-between">
+                    <li className="text text-right">Price: 350.00 VND</li>
                   </ul>
-                  <a class="text-muted" href="/shop">
+                  <a className="text-view" href="/product:87">
                     View
                   </a>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-4 mb-4">
-              <div class="card h-100">
-                <a href="shop-single.html">
+            <div className="col-12 col-md-4 mb-4">
+              <div className="card h-100">
+                <a href="/product:85">
                   <img
-                    src="./assets/img/feature_prod_03.jpg"
-                    class="card-img-top"
+                    src="https://product.hstatic.net/1000026602/product/img_3007_3931d480adaa4686b5fd41b1b5d70fed_master.jpg"
+                    className="card-img-top"
                     alt="..."
                   />
                 </a>
-                <div class="card-body">
+                <div className="card-body">
                   <a
-                    href="shop-single.html"
-                    class="h2 text-decoration-none text-dark"
+                    href="/product:85"
+                    className="h2 text-decoration-none text-dark"
                   >
-                    Summer Addides Shoes
+                    Green Monogram Pattern
                   </a>
 
-                  <p class="card-text">
+                  <p className="card-text">
                     Curabitur ac mi sit amet diam luctus porta. Phasellus
                     pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
                   </p>
-                  <ul class="list-unstyled d-flex justify-content-between">
-                    <li class="text-muted text-right">Price: $360.00</li>
+                  <ul className="list-unstyled d-flex justify-content-between">
+                    <li className="text text-right">Price: 350.00 VND</li>
                   </ul>
-                  <a class="text-muted" href="/shop">
+                  <a className="text-view" href="/product:85">
                     View
                   </a>
                 </div>

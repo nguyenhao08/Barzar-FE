@@ -1,129 +1,218 @@
-import React from "react";
-import { Button, Container, Col, Row, Table } from "react-bootstrap";
-import { useCart } from "react-use-cart";
-import { useSelector } from "react-redux";
-
-import { BsCartCheck, BsCartX } from "react-icons/bs";
+import React, { useState, useEffect } from "react";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const {
-    isEmpty,
-    items,
-    cartTotal,
-    updateItemQuantity,
-    removeItem,
-    emptyCart,
-  } = useCart();
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const FREESHIP_THRESHOLD = 500000;
+  const [total, setTotal] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0); // Tổng số lượng sản phẩm
+  const [remainingAmountForFreeship, setRemainingAmountForFreeship] =
+    useState(0);
+
+  const [quantityValues, setQuantityValues] = useState(
+    cartItems.reduce((acc, item) => {
+      acc[item.title] = item.quantity;
+      return acc;
+    }, {})
+  );
+
+  useEffect(() => {
+    const newTotal = calculateTotal();
+    setTotal(newTotal);
+    setRemainingAmountForFreeship(FREESHIP_THRESHOLD - newTotal);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantityValues]);
+
+  const handleQuantityChange = (event, title) => {
+    const newQuantity = parseInt(event.target.value);
+    setQuantityValues((prevValues) => ({
+      ...prevValues,
+      [title]: newQuantity,
+    }));
+
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.title === title) {
+        return {
+          ...item,
+          quantity: newQuantity,
+        };
+      }
+      return item;
+    });
+
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  };
+
+  const handleDeleteItem = (title) => {
+    const updatedCartItems = cartItems.filter((item) => item.title !== title);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    window.location.reload(); // Refresh the page to reflect the changes
+  };
+
+  const handleCheckout = () => {
+    window.location.href = "/checkout";
+  };
+
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => {
+      return total + item.price * quantityValues[item.title];
+    }, 0);
+  };
+
+  useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let quantitySum = 0;
+
+    storedCartItems.forEach((item) => {
+      quantitySum += item.quantity;
+    });
+
+    setTotalQuantity(quantitySum);
+  }, []);
+
+  useEffect(() => {
+    // Khi trang được tải, cập nhật tiêu đề của trang
+    document.title = "Cart - NH";
+  }, []);
 
   return (
-    <Container className="py-4 mt-5">
-      <h1 className="text-light-primary">
-        {isEmpty ? "Your Cart is Empty" : "The Cart"}
-      </h1>
-      <Row className="justify-content-center">
-        <Table
-          responsive="sm"
-          striped
-          bordered
-          hover
-          variant="light"
-          className="mb-5"
+    <>
+      <Header />
+      <div
+        className="row"
+        style={{
+          marginTop: "25px",
+          marginBottom: "25px",
+          backgroundColor: "#f8f9fa",
+        }}
+      >
+        <ul
+          className="item-discount freeship-cart"
+          style={{ display: "flex", marginLeft: "20px", alignItems: "center" }}
         >
-          <tbody>
-            {items.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <div
-                      style={{
-                        background: "white",
-                        height: "8rem",
-                        overflow: "hidden",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div style={{ padding: ".5rem" }}>
-                        <img
-                          src={item.image}
-                          style={{ width: "4rem" }}
-                          alt={item.title}
-                        />
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <h6
-                      style={{
-                        whiteSpace: "nowrap",
-                        width: "14rem",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {item.title}
-                    </h6>
-                  </td>
-                  <td>Rs. {item.price}</td>
-                  <td>Quantity ({item.quantity})</td>
-                  <td>
-                    <Button
-                      onClick={() =>
-                        updateItemQuantity(item.id, item.quantity - 1)
-                      }
-                      className="ms-2"
-                    >
-                      -
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        updateItemQuantity(item.id, item.quantity + 1)
-                      }
-                      className="ms-2"
-                    >
-                      +
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => removeItem(item.id)}
-                      className="ms-2"
-                    >
-                      Remove Item
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-        {!isEmpty && (
-          <Row
-            style={{ position: "fixed", bottom: 0 }}
-            className="bg-light-black text-light"
+          <div
+            className="icon-discount"
+            style={{ flex: "0 0 auto", marginRight: "10px" }}
           >
-            <Col className="py-2">
-              <h4>Total Price: Rs. {cartTotal}</h4>
-            </Col>
-            <Col className="p-0" md={4}>
-              <Button
-                variant="danger"
-                className="m-2"
-                onClick={() => emptyCart()}
-              >
-                <BsCartX size="1.7rem" />
-                Clear Cart
-              </Button>
-              <Button variant="success" className="m-2">
-                <BsCartCheck size="1.7rem" />
+            <img
+              src="//theme.hstatic.net/1000026602/1001065742/14/truck.png?v=776"
+              alt="Freeship"
+              style={{ width: "50px", height: "auto" }} // Thay đổi kích thước hình ảnh tại đây
+            />
+          </div>
+          <div className="detail-discount" style={{ flex: "1" }}>
+            {total < FREESHIP_THRESHOLD ? (
+              <span>
+                Buy more{" "}
+                <strong>{remainingAmountForFreeship.toLocaleString()}₫</strong>{" "}
+                to get
+                <strong style={{ fontWeight: "bold" }}>
+                  {" "}
+                  FREE NATIONWIDE SHIPPING
+                </strong>
+                {total < FREESHIP_THRESHOLD && (
+                  <a
+                    href="/shop"
+                    className="btn-style btn-buycoutinue"
+                    style={{ marginLeft: "30px" }}
+                  >
+                    Buy more
+                  </a>
+                )}
+              </span>
+            ) : (
+              <span>
+                You are eligible for{" "}
+                <strong style={{ fontWeight: "bold" }}>
+                  FREE NATIONWIDE SHIPPING
+                </strong>{" "}
+              </span>
+            )}
+          </div>
+        </ul>
+        {cartItems.length === 0 ? (
+          <div className="cart-container">
+            <p className="empty-cart-message">Your cart is empty.</p>
+          </div>
+        ) : (
+          <div className="ui grid container">
+            <div className="table-container">
+              <h4>Item Summary ({totalQuantity})</h4>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems.map((item, index) => (
+                    <tr key={index}>
+                      <td>
+                        <div>
+                          <label className="form-label"></label>
+                          {item.image && (
+                            <img
+                              src={item.image}
+                              alt="Preview"
+                              className="form-image1"
+                            />
+                          )}
+                          <br />
+                          {item.title}
+                        </div>
+                      </td>
+                      <td style={{ fontWeight: "normal" }}>
+                        {(item.price * 1).toLocaleString()}đ
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          value={quantityValues[item.title]}
+                          onChange={(e) => handleQuantityChange(e, item.title)}
+                          min="1"
+                        />
+                      </td>
+                      <td style={{ fontWeight: "normal" }}>
+                        {(
+                          item.price * quantityValues[item.title]
+                        ).toLocaleString()}
+                        đ
+                      </td>
+                      <td>
+                        <button
+                          className="button-btn1"
+                          onClick={() => handleDeleteItem(item.title)}
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="total-container">
+              <br />
+
+              <h4 style={{ fontWeight: "bold" }}>Order Summary</h4>
+              <br />
+              <h5 style={{ fontWeight: "normal" }}>
+                Total All: {calculateTotal().toLocaleString()}đ
+              </h5>
+              <button className="button-btn" onClick={handleCheckout}>
                 Checkout
-              </Button>
-            </Col>
-          </Row>
+              </button>
+            </div>
+          </div>
         )}
-      </Row>
-    </Container>
+      </div>
+      <Footer />
+    </>
   );
 };
 
