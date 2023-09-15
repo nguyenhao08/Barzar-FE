@@ -1534,6 +1534,27 @@
       "grandTotal": 150000,
       "paymentMethod": "Momo",
       "id": 31
+    },
+    {
+      "fullName": "Võ Nguyên Hào111111111",
+      "phoneNumber": "0377116163",
+      "address": "11111111111",
+      "selectedProvinceName": "Tỉnh Phú Thọ",
+      "selectedDistrictName": "Huyện Đoan Hùng",
+      "selectedWardName": "Xã Tây Cốc",
+      "cartItems": [
+        {
+          "id": "29",
+          "image": "https://product.hstatic.net/1000026602/product/dsc08146-2_bc0a3ca8d17f4758a7dca9829a8202e0_master.jpg",
+          "title": "Áo Sơ Mi Blue Pattern Mixed",
+          "price": "320000",
+          "quantity": 1
+        }
+      ],
+      "total": 320000,
+      "grandTotal": 350000,
+      "paymentMethod": "Cash on delivery (COD)",
+      "id": 32
     }
   ]
 }

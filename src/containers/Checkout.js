@@ -183,12 +183,12 @@ const Checkout = () => {
         setWardError(true);
       }
       return; // Prevent submission
+    } else {
+      saveOrderInformation();
+      localStorage.removeItem("cartItems");
+
+      window.location.href = "/thankyou";
     }
-
-    saveOrderInformation();
-    localStorage.removeItem("cartItems");
-
-    window.location.href = "/thankyou";
   };
   useEffect(() => {
     // Khi trang được tải, cập nhật tiêu đề của trang
