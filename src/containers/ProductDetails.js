@@ -16,14 +16,15 @@ import Footer from "./Footer";
 const ProductDetails = () => {
   const { productId } = useParams();
   const product = useSelector((state) => state.product);
-  const { image, title, price, category, currency, detail } = product;
+  const { images, title, price, category, description } = product;
   const dispatch = useDispatch();
 
   const fetchProductDetail = async (id) => {
     const response = await axios
-      .get(`http://localhost:4000/products/${id}`)
+      .get(`http://localhost:3000/api/v1/products/${id}`)
       .catch((err) => {});
     dispatch(selectedProduct(response.data));
+    console.log(response.data);
   };
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     const productData = {
       id: productId,
-      image,
+      image: images[0],
       title,
       price,
       quantity: 1,
@@ -58,10 +59,12 @@ const ProductDetails = () => {
 
     window.location.reload();
   };
+
   useEffect(() => {
     // Khi trang được tải, cập nhật tiêu đề của trang
     document.title = `${title}`;
   }, [title]);
+
   return (
     <>
       <Header />
@@ -83,24 +86,17 @@ const ProductDetails = () => {
               <div className="ui vertical divider">AND</div>
               <div className="middle aligned row">
                 <div className="column lp">
-                  <img className="ui fluid image" src={image} alt={title} />
+                  <img className="ui fluid image" src={images[0]} alt={title} />
                 </div>
                 <div className="column rp">
                   <h1>{title}</h1>
                   <h2>
                     <a className="ui teal tag label">
-                      {(price * 1).toLocaleString()} {currency}
+                      {parseFloat(price).toLocaleString()} VND
                     </a>
                   </h2>
-                  <h3 className="ui brown block header">{category}</h3>
-                  <p>
-                    {detail.split("\n").map((line, index) => (
-                      <React.Fragment key={index}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </p>
+                  <h3 className="ui brown block header">{category.title}</h3>
+                  <p>{description}</p>
                   <div
                     className="ui vertical animated button"
                     tabIndex="0"

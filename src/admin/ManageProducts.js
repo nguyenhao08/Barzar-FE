@@ -18,9 +18,9 @@ function ManageProduct({}) {
   const productsPerPage = 12;
 
   useEffect(() => {
-    fetch("http://localhost:4000/products")
+    fetch("http://localhost:3000/api/v1/products")
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => setProducts(data.products))
       .catch((error) => console.log(error));
   }, []);
   useEffect(() => {
@@ -61,7 +61,7 @@ function ManageProduct({}) {
       const selectedProductId = selectedProduct.id;
 
       axios
-        .delete(`http://localhost:4000/products/${selectedProductId}`)
+        .delete(`http://localhost:3000/api/v1/products/${selectedProductId}`)
         .then(() => {
           const updatedProducts = [...products];
           const updatedDisplayedProducts = [...displayedProducts];
@@ -248,14 +248,14 @@ function ManageProduct({}) {
                   <td>{product.title}</td>
                   <td>
                     <img
-                      src={product.image}
+                      src={product.images[0]}
                       alt={product.title}
                       style={{ height: "200px", width: "200px" }}
                     />
                   </td>
                   <td>{product.description}</td>
-                  <td>{product.price}</td>
-                  <td>{product.quantity}</td>
+                  <td>{(product.price * 1).toLocaleString()}</td>
+                  <td>{product.stock}</td>
                   <td>
                     <a
                       href={`/manage/product/edit/${product.id}`}

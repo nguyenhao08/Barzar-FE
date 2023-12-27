@@ -14,11 +14,15 @@ const Header = () => {
     setIsLoggedIn(initialLoggedInStatus === "true");
 
     // Lấy thuộc tính "name" từ API khi đăng nhập thành công
-    if (initialLoggedInStatus === "true") {
-      const id = localStorage.getItem("id");
-      axios.get(`http://localhost:4000/users/${id}`).then((response) => {
-        setName(response.data.name);
-      });
+    // Lấy dữ liệu từ localStorage
+    const userData = localStorage.getItem("userData");
+
+    // Kiểm tra nếu dữ liệu tồn tại
+    if (userData) {
+      // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+      const user = JSON.parse(userData);
+      // Lấy giá trị thuộc tính "name"
+      setName(user.name);
     }
 
     // Tính tổng số lượng sản phẩm trong localStorage

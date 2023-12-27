@@ -20,7 +20,7 @@ function Register() {
   useEffect(() => {
     if (!email || !password || !name) {
       setError("");
-    } else if (password.length < 10 || password.length > 30) {
+    } else if (password.length < 5 || password.length > 30) {
       setError("Password must be between 10 and 30 characters");
     } else if (!validateEmail(email)) {
       setError("Invalid email");
@@ -54,37 +54,30 @@ function Register() {
     if (!error && password === confirmPassword) {
       try {
         // Kiểm tra xem email đã tồn tại hay chưa
-        const emailExistsResponse = await axios.get(
-          `http://localhost:4000/users?email=${email}`
-        );
 
-        if (emailExistsResponse.data.length > 0) {
-          // Nếu email đã tồn tại, thông báo cho người dùng
-          setError("Email already exists");
-        } else {
-          const newUser = {
-            email,
-            password,
-            name,
-            role: "user",
-          };
+        const newUser = {
+          email,
+          password,
+          name,
+        };
 
-          // Gửi yêu cầu POST đến server
-          await axios.post("http://localhost:4000/users", newUser);
-          toast.success("Registration successful!");
+        // Gửi yêu cầu POST đến server
+        await axios.post("http://localhost:3000/api/v1/users/signup", newUser);
+        toast.success("Registration successful!");
 
-          setEmail("");
-          setPassword("");
-          setName("");
-          setConfirmPassword("");
-          setError("");
-          setTimeout(() => {
-            window.location.href = "/login";
-          }, 1500);
-        }
+        setEmail("");
+        setPassword("");
+        setName("");
+        setConfirmPassword("");
+        setError("");
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 1500);
       } catch (error) {
         console.error("Registration failed:", error);
-        setError("Failed to register. Please try again.");
+        setError(
+          "Email already exists or Failed to register. Please try again."
+        );
       }
     } else {
       setError("Passwords do not match");

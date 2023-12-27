@@ -24,7 +24,7 @@ const ProductPage = () => {
     let results = products;
     if (currentCategory !== "All") {
       results = results.filter(
-        (product) => product.category === currentCategory
+        (product) => product.category.title === currentCategory
       );
     }
     if (searchTerm) {
@@ -38,9 +38,10 @@ const ProductPage = () => {
   }, [searchTerm, products, currentCategory]);
   const fetchProducts = async () => {
     const response = await axios
-      .get("http://localhost:4000/products")
+      .get("http://localhost:3000/api/v1/products")
       .catch((err) => {});
-    dispatch(setProducts(response.data));
+    dispatch(setProducts(response.data.products));
+    console.log(response.data.products);
   };
 
   useEffect(() => {
@@ -88,9 +89,9 @@ const ProductPage = () => {
                 <li className="list-inline-item">
                   <a
                     className={`h3 text-dark text-decoration-none mr-3 ${
-                      currentCategory === "Men's" ? "active" : ""
+                      currentCategory === "Men" ? "active" : ""
                     } cursor-pointer`}
-                    onClick={() => handleCategoryClick("Men's")}
+                    onClick={() => handleCategoryClick("Men")}
                   >
                     Men's
                   </a>
@@ -98,9 +99,9 @@ const ProductPage = () => {
                 <li className="list-inline-item">
                   <a
                     className={`h3 text-dark text-decoration-none ${
-                      currentCategory === "women" ? "active" : ""
+                      currentCategory === "Woman" ? "active" : ""
                     } cursor-pointer`}
-                    onClick={() => handleCategoryClick("women")}
+                    onClick={() => handleCategoryClick("Woman")}
                   >
                     Women's
                   </a>

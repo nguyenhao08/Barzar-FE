@@ -19,7 +19,7 @@ function Editprd() {
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
     const response = await axios
-      .get(`http://localhost:4000/products/${id}`)
+      .get(`http://localhost:3000/api/v1/products/${id}`)
       .catch((err) => {});
     dispatch(selectedProduct(response.data));
   };
@@ -202,7 +202,7 @@ function Editprd() {
             <input
               type="number"
               className={`form-input ${errors.quantity && "error-input"}`}
-              value={product.quantity}
+              value={product.stock}
               onChange={handleQuantityChange}
             />
             {errors.quantity && (
@@ -270,8 +270,8 @@ function Editprd() {
 
           <div>
             <label className="form-label">Image URL:</label>
-            {product.image && (
-              <img src={product.image} alt="Preview" className="form-image" />
+            {product && (
+              <img src={product.images} alt="Preview" className="form-image" />
             )}
           </div>
 

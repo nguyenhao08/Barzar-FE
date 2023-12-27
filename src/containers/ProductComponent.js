@@ -7,12 +7,14 @@ const ProductComponent = ({ products }) => {
 
   // Sử dụng danh sách sản phẩm đã được truyền từ prop
   const displayedProducts = useMemo(() => {
-    // Tính toán danh sách sản phẩm hiển thị trên trang
+    if (!Array.isArray(products)) {
+      return []; // hoặc giá trị mặc định khác nếu phù hợp với trường hợp của bạn
+    }
+
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
     return products.slice(startIndex, endIndex);
   }, [products, currentPage]);
-
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   const handlePageChange = (pageNumber) => {
@@ -39,23 +41,24 @@ const ProductComponent = ({ products }) => {
       <div className="ui grid container">
         {displayedProducts.map((product) => {
           const { id, title, image, price, category, currency, description } =
-            product;
+            product; // Sửa đổi thành "product" thay vì "products"
+          console.log("sản phẩm", product.image);
 
           return (
-            <div className="four wide column" key={id}>
+            <div className="four wide column" key={product.id}>
               <a href={`/product:${id}`}>
                 <div className="ui link cards">
                   <div className="card">
                     <div className="image">
-                      <img src={image} alt={title} />
+                      <img src={product.images[0]} alt={product.title} />
                     </div>
                     <div className="content">
-                      <div className="header">{title}</div>
+                      <div className="header">{product.title}</div>
                       <div className="meta price">
-                        {(price * 1).toLocaleString()} {currency}
+                        {(price * 1).toLocaleString()}VND {currency}
                       </div>
-                      <div className="meta">{description}</div>
-                      <div className="meta">{category}</div>
+                      <div className="meta">{product.description}</div>
+                      <div className="meta">{products.category}</div>
                     </div>
                   </div>
                 </div>

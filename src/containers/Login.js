@@ -11,6 +11,8 @@ function Login({ setUserRole, setIsLoggedIn }) {
   const [isDisabled, setIsDisabled] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [accessToken, setAccessToken] = useState("");
   useEffect(() => {
     const hasError = !email || !password || error !== "";
     setIsDisabled(hasError);
@@ -19,7 +21,7 @@ function Login({ setUserRole, setIsLoggedIn }) {
   useEffect(() => {
     if (!email || !password) {
       setError("");
-    } else if (password.length < 10 || password.length > 30) {
+    } else if (password.length < 5 || password.length > 30) {
       setError("Password must be between 10 and 30 characters");
     } else if (!validateEmail(email)) {
       setError("Invalid email");
@@ -33,24 +35,34 @@ function Login({ setUserRole, setIsLoggedIn }) {
       const storedLoggedInFlag = localStorage.getItem("isLoggedIn");
 
       if (storedLoggedInFlag === "true") {
-        setIsLoggedIn(true);
-        const storedUserRole = localStorage.getItem("role");
-        setUserRole(storedUserRole);
+        const storedUserData = JSON.parse(localStorage.getItem("userData"));
+        const storedAccessToken = localStorage.getItem("accessToken");
+        const { roles, id } = storedUserData;
+        const role = roles[0];
+        console.log("Role: " + role);
 
-        if (storedUserRole === "admin") {
+        // Lưu thông tin người dùng và token vào state
+        setUserData(storedUserData);
+        setAccessToken(storedAccessToken);
+
+        setIsLoggedIn(true);
+        setUserRole(role);
+
+        if (role === "admin") {
           window.location.href = "/manage/products";
-        } else if (storedUserRole === "user") {
+        } else if (role === "user") {
           window.location.href = "/";
         }
       } else {
         setIsLoggedIn(false);
-        // Automatically fill in the email and password fields
-        const storedEmail = localStorage.getItem("email");
-        const storedPassword = localStorage.getItem("password");
-        const storedRememberMe = localStorage.getItem("rememberMe");
-        setEmail(storedEmail || "");
-        setPassword(storedPassword || "");
-        setRememberMe(storedRememberMe || "");
+
+        // Xóa thông tin người dùng và token trong state
+        setUserData(null);
+        setAccessToken("");
+
+        // Xóa thông tin người dùng và token trong localStorage
+        localStorage.removeItem("userData");
+        localStorage.removeItem("accessToken");
       }
     };
 
@@ -85,13 +97,32 @@ function Login({ setUserRole, setIsLoggedIn }) {
     setIsLoading(true); // Bật trạng thái chờ
 
     try {
-      const res = await axios.post("http://localhost:4000/api/login", {
-        email,
-        password,
-      });
-      if (res.status === 200) {
-        const { role, id } = res.data;
+      const res = await axios.post(
+        "http://localhost:3000/api/v1/users/signin",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(res.status);
+      console.log(res.data.user);
+      if (res.status === 201) {
+        const { accessToken } = res.data;
+        const user = res.data.user;
+        const { roles, id } = user;
+        const role = roles[0];
 
+        // Lưu thông tin người dùng và token vào state
+        setUserData(user);
+        setAccessToken(accessToken);
+
+        // Lưu thông tin người dùng và token vào localStorage
+        localStorage.setItem("userData", JSON.stringify(user));
+        localStorage.setItem("accessToken", accessToken);
+
+        // Tiến hành chuyển hướng
+        setIsLoggedIn(true);
+        setUserRole(role);
         if (role === "admin" || role === "user") {
           // Save login information to localStorage if rememberMe is checked
           if (rememberMe) {

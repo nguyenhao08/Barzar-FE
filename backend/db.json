@@ -95,6 +95,27 @@
       "name": "Hào Nguyên",
       "role": "user",
       "id": 12
+    },
+    {
+      "email": "hao88@gmail.com",
+      "password": "hao20012001",
+      "name": "Hao Nguyen",
+      "role": "user",
+      "id": 13
+    },
+    {
+      "email": "hao0808@gmail.com",
+      "password": "Vonguyenhao08",
+      "name": "Hao",
+      "role": "user",
+      "id": 14
+    },
+    {
+      "email": "hao98@gmail.com",
+      "password": "hao20012001",
+      "name": "Hafo",
+      "role": "user",
+      "id": 15
     }
   ],
   "products": [
@@ -138,7 +159,7 @@
       "description": " Phong Cách: Basic, Street Style",
       "category": "Men's",
       "image": "https://product.hstatic.net/1000026602/product/dsc02665_eb1945e0df074e1495d67b8a4205d9a8_master.jpg",
-      "quantity": "5",
+      "quantity": "-1",
       "detail": "- Chất Liệu: Polyeste Dệt Jacquard\n- Độ Co Giãn: Trung Bình\n- Form Set: Regular\n- Loại Set: Trơn\n- Phong Cách: Basic, Street Style",
       "currency": "VND"
     },
@@ -427,6 +448,17 @@
       "detail": "- Định Lượng: 245GSM\n- Form Áo: Slim Fit\n- Độ Co Giãn: Trung Bình\n- Tay Áo: Tay Ngắn\n- Loại Áo: Áo Trơn\n- Chi Tiết: Phối Túi",
       "currency": "VND",
       "id": 87
+    },
+    {
+      "title": "321",
+      "price": "321",
+      "description": "321",
+      "category": "other",
+      "image": "321321",
+      "quantity": "321",
+      "detail": "213",
+      "currency": "USD",
+      "id": 88
     }
   ],
   "orderinformation": [
@@ -1555,6 +1587,83 @@
       "grandTotal": 350000,
       "paymentMethod": "Cash on delivery (COD)",
       "id": 32
+    },
+    {
+      "fullName": "Hao",
+      "phoneNumber": "0377116163",
+      "address": "Xuan Loc",
+      "selectedProvinceName": "Tỉnh Nghệ An",
+      "selectedDistrictName": "Huyện Nghi Lộc",
+      "selectedWardName": "Xã Nghi Phong",
+      "cartItems": [
+        {
+          "id": "84",
+          "image": "https://product.hstatic.net/1000026602/product/dsc09248_279c5d36af944d41be45f7534963c51b_master.jpg",
+          "title": "Áo Polo Color Block Mininet",
+          "price": "350000",
+          "quantity": 1
+        }
+      ],
+      "total": 350000,
+      "grandTotal": 380000,
+      "paymentMethod": "Cash on delivery (COD)",
+      "id": 33
+    },
+    {
+      "fullName": "Nguyên Hào",
+      "phoneNumber": "0377116163",
+      "address": "Quy Nhon Binh Dinh",
+      "selectedProvinceName": "Tỉnh Trà Vinh",
+      "selectedDistrictName": "Huyện Tiểu Cần",
+      "selectedWardName": "Xã Hiếu Trung",
+      "cartItems": [
+        {
+          "id": "6",
+          "image": "https://product.hstatic.net/1000026602/product/web_d_605fd8940a054b7980910c9be47884af_master.jpg",
+          "title": "Quần Jean Straight Distress Dark Blue",
+          "price": "430000",
+          "quantity": 1
+        },
+        {
+          "id": "55",
+          "image": "https://product.hstatic.net/1000026602/product/img_8926_11f60dfaa28a415ca44d25b603f328eb_master.jpg",
+          "title": "Nón Eighteen Beige",
+          "price": "120000",
+          "quantity": 1
+        }
+      ],
+      "total": 550000,
+      "grandTotal": 550000,
+      "paymentMethod": "Bank Transfer",
+      "id": 34
+    },
+    {
+      "fullName": "Võ Nguyên Hào",
+      "phoneNumber": "0377116163",
+      "address": "11111111111",
+      "selectedProvinceName": "Tỉnh Hoà Bình",
+      "selectedDistrictName": "Huyện Đà Bắc",
+      "selectedWardName": "Xã Cao Sơn",
+      "cartItems": [
+        {
+          "id": "41",
+          "image": "https://product.hstatic.net/1000026602/product/img_8133_6d6cb6dc731b4895a7dee373f5458331_master.jpg",
+          "title": "Áo Sơ Mi Vertical Blue White Pock",
+          "price": "280000",
+          "quantity": 1
+        },
+        {
+          "id": "76",
+          "image": "https://product.hstatic.net/1000026602/product/img_0044_f2f9f82fb43b445686c959a8c382f9a8_master.jpg",
+          "title": "Kính Aviator Bar Extra Lens",
+          "price": "200000",
+          "quantity": 1
+        }
+      ],
+      "total": 480000,
+      "grandTotal": 510000,
+      "paymentMethod": "Momo",
+      "id": 35
     }
   ]
 }
