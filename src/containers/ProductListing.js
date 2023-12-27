@@ -24,7 +24,7 @@ const ProductPage = () => {
     let results = products;
     if (currentCategory !== "All") {
       results = results.filter(
-        (product) => product.category.title === currentCategory
+        (product) => product.category === currentCategory
       );
     }
     if (searchTerm) {
@@ -36,12 +36,18 @@ const ProductPage = () => {
     }
     setSearchResults(results);
   }, [searchTerm, products, currentCategory]);
+  const axiosInstance = axios.create({
+    baseURL: "http://localhost:8080",
+  });
+
   const fetchProducts = async () => {
-    const response = await axios
-      .get("http://localhost:3000/api/v1/products")
-      .catch((err) => {});
-    dispatch(setProducts(response.data.products));
-    console.log(response.data.products);
+    try {
+      const response = await axiosInstance.get("/products");
+      console.log("Dữ liệu phản hồi:", response.data);
+      dispatch(setProducts(response.data));
+    } catch (error) {
+      console.error("Lỗi khi lấy dữ liệu sản phẩm:", error);
+    }
   };
 
   useEffect(() => {

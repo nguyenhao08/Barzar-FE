@@ -21,6 +21,8 @@ const Checkout = () => {
   const [wardError, setWardError] = useState(false);
 
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const cartItemsString = JSON.stringify(cartItems);
+  console.log("string", cartItemsString);
 
   const [quantityValues] = useState(
     cartItems.reduce((acc, item) => {
@@ -121,22 +123,25 @@ const Checkout = () => {
     const shippingFee = total > 500000 ? 0 : 30000;
     return total + shippingFee;
   };
+
+  const addres =
+    selectedWardName + "-" + selectedDistrictName + "-" + selectedProvinceName;
   const saveOrderInformation = () => {
     const orderData = {
-      fullName: fullName,
+      name: fullName,
       phoneNumber: phoneNumber,
       address: address,
-      selectedProvinceName: selectedProvinceName,
-      selectedDistrictName: selectedDistrictName,
-      selectedWardName: selectedWardName,
-      cartItems: cartItems,
+      addres: addres,
+      cartItems: cartItemsString,
       total: calculateTotal(),
       grandTotal: calculateGrandTotal(),
       paymentMethod: selectedRadioContent,
     };
+
+    localStorage.setItem("orderInformation", JSON.stringify(orderData));
     console.log(cartItems);
 
-    fetch("http://localhost:4000/orderinformation", {
+    fetch("http://localhost:8080/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

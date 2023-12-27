@@ -56,13 +56,13 @@ function Register() {
         // Kiểm tra xem email đã tồn tại hay chưa
 
         const newUser = {
+          name,
           email,
           password,
-          name,
         };
 
         // Gửi yêu cầu POST đến server
-        await axios.post("http://localhost:3000/api/v1/users/signup", newUser);
+        await axios.post("http://localhost:8080/sign-up", newUser);
         toast.success("Registration successful!");
 
         setEmail("");

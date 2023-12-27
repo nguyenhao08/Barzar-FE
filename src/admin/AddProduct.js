@@ -18,7 +18,7 @@ function Addprd() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Men's");
-  const [image, setImage] = useState("");
+  const [images, setImage] = useState("");
   const [quantity, setQuantity] = useState("");
   const [detail, setDetail] = useState("");
   const [currency, setCurrency] = useState("VND");
@@ -39,7 +39,7 @@ function Addprd() {
       (title === "" ||
         price === "" ||
         description === "" ||
-        image === "" ||
+        images === "" ||
         quantity === "" ||
         detail === "")
     ) {
@@ -68,7 +68,7 @@ function Addprd() {
         isValid = false;
       }
 
-      if (image === "") {
+      if (images === "") {
         setImageError("Please enter the product image URL.");
         isValid = false;
       }
@@ -88,16 +88,16 @@ function Addprd() {
       }
       return;
     }
+    const stock = quantity;
 
     const product = {
       title,
       price,
       description,
       category,
-      image,
-      quantity,
+      images,
+      stock,
       detail,
-      currency,
     };
 
     dispatch(addProduct(product));

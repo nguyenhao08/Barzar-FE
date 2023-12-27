@@ -18,9 +18,9 @@ function ManageProduct({}) {
   const productsPerPage = 12;
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/products")
+    fetch("http://localhost:8080/products")
       .then((response) => response.json())
-      .then((data) => setProducts(data.products))
+      .then((data) => setProducts(data))
       .catch((error) => console.log(error));
   }, []);
   useEffect(() => {
@@ -61,7 +61,7 @@ function ManageProduct({}) {
       const selectedProductId = selectedProduct.id;
 
       axios
-        .delete(`http://localhost:3000/api/v1/products/${selectedProductId}`)
+        .delete(`http://localhost:8080/products/${selectedProductId}`)
         .then(() => {
           const updatedProducts = [...products];
           const updatedDisplayedProducts = [...displayedProducts];
@@ -248,7 +248,7 @@ function ManageProduct({}) {
                   <td>{product.title}</td>
                   <td>
                     <img
-                      src={product.images[0]}
+                      src={product.images}
                       alt={product.title}
                       style={{ height: "200px", width: "200px" }}
                     />

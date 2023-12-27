@@ -97,20 +97,19 @@ function Login({ setUserRole, setIsLoggedIn }) {
     setIsLoading(true); // Bật trạng thái chờ
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/v1/users/signin",
-        {
-          email,
-          password,
-        }
-      );
+      const res = await axios.post("http://localhost:8080/authenticate", {
+        email,
+        password,
+      });
       console.log(res.status);
-      console.log(res.data.user);
-      if (res.status === 201) {
+      console.log(res.data);
+      if (res.status === 200) {
         const { accessToken } = res.data;
-        const user = res.data.user;
+        const user = res.data;
         const { roles, id } = user;
-        const role = roles[0];
+        const role = roles;
+
+        console.log("roles", role);
 
         // Lưu thông tin người dùng và token vào state
         setUserData(user);

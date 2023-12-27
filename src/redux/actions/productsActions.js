@@ -23,15 +23,17 @@ export const removeSelectedProduct = () => {
 export const addProduct = (product) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:4000/products", product)
+      .post("http://localhost:8080/products", product)
       .then((response) => {
         dispatch({
           type: ActionTypes.ADD_PRODUCT,
           payload: response.data,
         });
+        console.log(response, "success", product);
       })
+
       .catch((error) => {
-        console.log(error);
+        console.log("Lỗi add", error);
       });
   };
 };

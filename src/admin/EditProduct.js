@@ -19,7 +19,7 @@ function Editprd() {
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
     const response = await axios
-      .get(`http://localhost:3000/api/v1/products/${id}`)
+      .get(`http://localhost:8080/products/${id}`)
       .catch((err) => {});
     dispatch(selectedProduct(response.data));
   };
@@ -59,7 +59,7 @@ function Editprd() {
     dispatch(selectedProduct(updatedProduct));
   };
 
-  const [previewImage, setPreviewImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(product.images);
   const [images, setImage] = useState("");
 
   const handleImageChange = (e) => {
@@ -100,7 +100,7 @@ function Editprd() {
       return;
     }
     axios
-      .put(`http://localhost:4000/products/${productId}`, product)
+      .put(`http://localhost:8080/products/${productId}`, product)
       .then(() => {})
       .catch((error) => console.log(error));
     setTimeout(() => {
@@ -248,9 +248,9 @@ function Editprd() {
             value={product.category}
             onChange={handleCategoryChange}
           >
-            <option value="men">Men's</option>
-            <option value="women">Women's</option>
-            <option value="other">Other Product </option>
+            <option value="Men">Men's</option>
+            <option value="Woman">Women's</option>
+            <option value="Orther">Other Product </option>
           </select>
         </div>
         <div className="form-row-2">
@@ -270,8 +270,8 @@ function Editprd() {
 
           <div>
             <label className="form-label">Image URL:</label>
-            {product && (
-              <img src={product.images} alt="Preview" className="form-image" />
+            {previewImage && (
+              <img src={previewImage} alt="Preview" className="form-image" />
             )}
           </div>
 

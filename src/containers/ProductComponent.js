@@ -50,7 +50,7 @@ const ProductComponent = ({ products }) => {
                 <div className="ui link cards">
                   <div className="card">
                     <div className="image">
-                      <img src={product.images[0]} alt={product.title} />
+                      <img src={product.images} alt={product.title} />
                     </div>
                     <div className="content">
                       <div className="header">{product.title}</div>

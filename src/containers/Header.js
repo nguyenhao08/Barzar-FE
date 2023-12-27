@@ -21,8 +21,11 @@ const Header = () => {
     if (userData) {
       // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
       const user = JSON.parse(userData);
+      const name1 = user.name.split("@");
+      const username = name1[0];
+
       // Lấy giá trị thuộc tính "name"
-      setName(user.name);
+      setName(username);
     }
 
     // Tính tổng số lượng sản phẩm trong localStorage

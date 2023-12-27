@@ -21,7 +21,7 @@ const ProductDetails = () => {
 
   const fetchProductDetail = async (id) => {
     const response = await axios
-      .get(`http://localhost:3000/api/v1/products/${id}`)
+      .get(`http://localhost:8080/products/${id}`)
       .catch((err) => {});
     dispatch(selectedProduct(response.data));
     console.log(response.data);
@@ -37,7 +37,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     const productData = {
       id: productId,
-      image: images[0],
+      image: images,
       title,
       price,
       quantity: 1,
@@ -86,7 +86,7 @@ const ProductDetails = () => {
               <div className="ui vertical divider">AND</div>
               <div className="middle aligned row">
                 <div className="column lp">
-                  <img className="ui fluid image" src={images[0]} alt={title} />
+                  <img className="ui fluid image" src={images} alt={title} />
                 </div>
                 <div className="column rp">
                   <h1>{title}</h1>
